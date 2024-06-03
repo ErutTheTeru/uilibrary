@@ -4,6 +4,7 @@ FlurioreLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ErutThe
 local Notify = FlurioreLib:MakeNotify({
 	["Title"] = "Fluriore UI",
 	["Description"] = "Notification",
+	["Color"] = Color3.fromRGB(255, 0, 255),
 	["Content"] = "Welcome to Fluriore UI",
 	["Time"] = 1,
 	["Delay"] = 10
@@ -14,6 +15,7 @@ local Notify = FlurioreLib:MakeNotify({
 local FlurioreGui = FlurioreLib:MakeGui({
 	["NameHub"] = "Fluriore UI",
 	["Description"] = "made by Teru",
+	["Color"] = Color3.fromRGB(255, 0, 255),
 	["Logo Player"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..game:GetService("Players").LocalPlayer.UserId .."&width=420&height=420&format=png",
 	["Name Player"] = tostring(game:GetService("Players").LocalPlayer.Name),
 	["Tab Width"] = 125
