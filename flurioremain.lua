@@ -146,6 +146,7 @@ function FlurioreLib:MakeNotify(NotifyConfig)
 	NotifyConfig.Title = NotifyConfig.Title or "Hirimi Hub"
 	NotifyConfig.Description = NotifyConfig.Description or "Notification"
 	NotifyConfig.Content = NotifyConfig.Content or "Content"
+	NotifyConfig.Color = NotifyConfig.Color or Color3.fromRGB(255, 0, 255)
 	NotifyConfig.Time = NotifyConfig.Time or 0.5
 	NotifyConfig.Delay = NotifyConfig.Delay or 5
 	local NotifyFunction = {}
@@ -271,7 +272,7 @@ function FlurioreLib:MakeNotify(NotifyConfig)
 
 		TextLabel1.Font = Enum.Font.GothamBold
 		TextLabel1.Text = NotifyConfig.Description
-		TextLabel1.TextColor3 = Color3.fromRGB(255, 0, 255)
+		TextLabel1.TextColor3 = NotifyConfig.Color
 		TextLabel1.TextSize = 14
 		TextLabel1.TextXAlignment = Enum.TextXAlignment.Left
 		TextLabel1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -282,7 +283,7 @@ function FlurioreLib:MakeNotify(NotifyConfig)
 		TextLabel1.Position = UDim2.new(0, TextLabel.TextBounds.X + 15, 0, 0)
 		TextLabel1.Parent = Top
 
-		UIStroke1.Color = Color3.fromRGB(255, 0, 255)
+		UIStroke1.Color = NotifyConfig.Color
 		UIStroke1.Thickness = 0.4000000059604645
 		UIStroke1.Parent = TextLabel1
 
@@ -362,8 +363,9 @@ function FlurioreLib:MakeNotify(NotifyConfig)
 end
 function FlurioreLib:MakeGui(GuiConfig)
 	local GuiConfig = GuiConfig or {}
-	GuiConfig.NameHub = GuiConfig.NameHub or "Fluriore UI"
-	GuiConfig.Description = GuiConfig.Description or "made by Teru"
+	GuiConfig.NameHub = GuiConfig.NameHub or "Hirimi Hub"
+	GuiConfig.Description = GuiConfig.Description or "Comeback | developing by Hirimi, Teru"
+	GuiConfig.Color = GuiConfig.Color or Color3.fromRGB(255, 0, 255)
 	GuiConfig["Logo Player"] = GuiConfig["Logo Player"] or "https://www.roblox.com/headshot-thumbnail/image?userId="..game:GetService("Players").LocalPlayer.UserId .."&width=420&height=420&format=png"
 	GuiConfig["Name Player"] = GuiConfig["Name Player"] or tostring(game:GetService("Players").LocalPlayer.Name)
 	GuiConfig["Tab Width"] = GuiConfig["Tab Width"] or 120
@@ -464,7 +466,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 	TextLabel1.Font = Enum.Font.GothamBold
 	TextLabel1.Text = " "..GuiConfig.Description
-	TextLabel1.TextColor3 = Color3.fromRGB(255, 0, 255)
+	TextLabel1.TextColor3 = GuiConfig.Color
 	TextLabel1.TextSize = 14
 	TextLabel1.TextXAlignment = Enum.TextXAlignment.Left
 	TextLabel1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -475,7 +477,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 	TextLabel1.Position = UDim2.new(0, TextLabel.TextBounds.X + 4, 0, 0)
 	TextLabel1.Parent = Top
 
-	UIStroke1.Color = Color3.fromRGB(255, 0, 255)
+	UIStroke1.Color = GuiConfig.Color
 	UIStroke1.Thickness = 0.4000000059604645
 	UIStroke1.Parent = TextLabel1
 
@@ -955,7 +957,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 			LayersPageLayout:JumpToIndex(0)
 			NameTab.Text = TabConfig.Name
 			local ChooseFrame = Instance.new("Frame");
-			ChooseFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+			ChooseFrame.BackgroundColor3 = GuiConfig.Color
 			ChooseFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			ChooseFrame.BorderSizePixel = 0
 			ChooseFrame.Position = UDim2.new(0, 2, 0, 9)
@@ -963,7 +965,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 			ChooseFrame.Name = "ChooseFrame"
 			ChooseFrame.Parent = Tab
 
-			UIStroke2.Color = Color3.fromRGB(255, 0, 255)
+			UIStroke2.Color = GuiConfig.Color
 			UIStroke2.Thickness = 1.600000023841858
 			UIStroke2.Parent = ChooseFrame
 
@@ -1122,7 +1124,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 			UIGradient.Color = ColorSequence.new{
 				ColorSequenceKeypoint.new(0, Color3.fromRGB(20, 20, 20)),
-				ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 0, 255)),
+				ColorSequenceKeypoint.new(0.5, GuiConfig.Color),
 				ColorSequenceKeypoint.new(1, Color3.fromRGB(20, 20, 20))
 			}
 			UIGradient.Parent = SectionDecideFrame
@@ -1149,7 +1151,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 			UIListLayout2.Padding = UDim.new(0, 3)
 			UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
 			UIListLayout2.Parent = SectionAdd
-			local OpenSection = false
+			local OpenSection = true
 			local function UpdateSizeScroll()
 				local OffsetY = 0
 				for _, child in ScrolLayers:GetChildren() do
@@ -1542,7 +1544,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 						TweenService:Create(
 							ToggleTitle,
 							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-							{TextColor3 = Color3.fromRGB(255, 0, 255)}
+							{TextColor3 = GuiConfig.Color}
 						):Play()
 						TweenService:Create(
 							ToggleCircle,
@@ -1552,12 +1554,12 @@ function FlurioreLib:MakeGui(GuiConfig)
 						TweenService:Create(
 							UIStroke8,
 							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-							{Color = Color3.fromRGB(255, 0, 255), Transparency = 0}
+							{Color = GuiConfig.Color, Transparency = 0}
 						):Play()
 						TweenService:Create(
 							FeatureFrame2,
 							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
-							{BackgroundColor3 = Color3.fromRGB(255, 0, 255), BackgroundTransparency = 0} 
+							{BackgroundColor3 = GuiConfig.Color, BackgroundTransparency = 0} 
 						):Play()
 					else
 						TweenService:Create(
@@ -1679,7 +1681,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				end)
 
 				SliderInput.AnchorPoint = Vector2.new(0, 0.5)
-				SliderInput.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+				SliderInput.BackgroundColor3 = GuiConfig.Color
 				SliderInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				SliderInput.BorderSizePixel = 0
 				SliderInput.Position = UDim2.new(1, -155, 0.5, 0)
@@ -1716,7 +1718,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				UICorner17.Parent = SliderFrame
 
 				SliderDraggable.AnchorPoint = Vector2.new(0, 0.5)
-				SliderDraggable.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+				SliderDraggable.BackgroundColor3 = GuiConfig.Color
 				SliderDraggable.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				SliderDraggable.BorderSizePixel = 0
 				SliderDraggable.Position = UDim2.new(0, 0, 0.5, 0)
@@ -1727,7 +1729,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				UICorner18.Parent = SliderDraggable
 
 				SliderCircle.AnchorPoint = Vector2.new(1, 0.5)
-				SliderCircle.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+				SliderCircle.BackgroundColor3 = GuiConfig.Color
 				SliderCircle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				SliderCircle.BorderSizePixel = 0
 				SliderCircle.Position = UDim2.new(1, 4, 0.5, 0)
@@ -1737,7 +1739,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 				UICorner19.Parent = SliderCircle
 
-				UIStroke6.Color = Color3.fromRGB(255, 0, 255)
+				UIStroke6.Color = GuiConfig.Color
 				UIStroke6.Parent = SliderCircle
 
 				local Dragging = false
@@ -2194,7 +2196,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 					OptionText.Parent = Option
 	
 					ChooseFrame.AnchorPoint = Vector2.new(0, 0.5)
-					ChooseFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+					ChooseFrame.BackgroundColor3 = GuiConfig.Color
 					ChooseFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					ChooseFrame.BorderSizePixel = 0
 					ChooseFrame.Position = UDim2.new(0, 2, 0.5, 0)
@@ -2202,7 +2204,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 					ChooseFrame.Name = "ChooseFrame"
 					ChooseFrame.Parent = Option
 				
-					UIStroke15.Color = Color3.fromRGB(255, 0, 255)
+					UIStroke15.Color = GuiConfig.Color
 					UIStroke15.Thickness = 1.600000023841858
 					UIStroke15.Transparency = 0.999
 					UIStroke15.Parent = ChooseFrame
