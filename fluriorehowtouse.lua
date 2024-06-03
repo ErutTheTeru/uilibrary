@@ -1,5 +1,5 @@
 --// Any bug & error, report in https://discord.gg/3Aatp4Nhjp
-FlurioreLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ErutTheTeru/uilibrary/main/flurioremain.lua"))()
+local FlurioreLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ErutTheTeru/uilibrary/main/flurioremain.lua"))()
 --// Notify
 local Notify = FlurioreLib:MakeNotify({
 	["Title"] = "Fluriore UI",
