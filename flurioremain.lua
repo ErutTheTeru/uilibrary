@@ -362,8 +362,8 @@ function FlurioreLib:MakeNotify(NotifyConfig)
 end
 function FlurioreLib:MakeGui(GuiConfig)
 	local GuiConfig = GuiConfig or {}
-	GuiConfig.NameHub = GuiConfig.NameHub or "Hirimi Hub"
-	GuiConfig.Description = GuiConfig.Description or "Comeback | developing by Hirimi, Teru"
+	GuiConfig.NameHub = GuiConfig.NameHub or "Fluriore UI"
+	GuiConfig.Description = GuiConfig.Description or "made by Teru"
 	GuiConfig["Logo Player"] = GuiConfig["Logo Player"] or "https://www.roblox.com/headshot-thumbnail/image?userId="..game:GetService("Players").LocalPlayer.UserId .."&width=420&height=420&format=png"
 	GuiConfig["Name Player"] = GuiConfig["Name Player"] or tostring(game:GetService("Players").LocalPlayer.Name)
 	GuiConfig["Tab Width"] = GuiConfig["Tab Width"] or 120
