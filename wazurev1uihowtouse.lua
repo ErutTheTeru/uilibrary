@@ -25,6 +25,8 @@ local WazureGui = WazureV1:Start({
 	["Logo Player"] = "rbxassetid://18243105495",
 	["Name Player"] = "ruteteru",
 	["Tab Width"] = 120,
+	["Color"] = Color3.fromRGB(6.000000117346644, 141.0000067949295, 234.00000125169754),
+	["Custom Toggle"] = false,
 	["CloseCallBack"] = function()
 		WazureV1:Notify({
 			["Title"] = "Alert",
@@ -41,10 +43,13 @@ local WazureGui = WazureV1:Start({
 	["Logo Player"] = <string>,
 	["Name Player"] = <string>,
 	["Tab Width"] = <number>,
+	["Color"] = <userdata>,
+	["Custom Toggle"] = <boolean>,
 	["CloseCallBack"] = <function>
 })
 ]]
 -- WazureGui:CloseUI()
+-- WazureGui:ToggleUI()
 --// Make Tab
 local MainTab = WazureGui:MakeTab("Main")
 -- WazureGui:MakeTab(<string>)
