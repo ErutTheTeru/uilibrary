@@ -48,8 +48,8 @@ local WazureGui = WazureV1:Start({
 	["CloseCallBack"] = <function>
 })
 ]]
--- WazureGui:CloseUI()
--- WazureGui:ToggleUI()
+-- WazureV1:CloseUI()
+-- WazureV1:ToggleUI()
 --// Make Tab
 local MainTab = WazureGui:MakeTab("Main")
 -- WazureGui:MakeTab(<string>)
