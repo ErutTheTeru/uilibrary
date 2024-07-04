@@ -25,6 +25,7 @@ local WazureGui = WazureV1:Start({
 		})
 	end
 })
+-- WazureGui:CloseUI()
 --// Make Tab
 local MainTab = WazureGui:MakeTab("Main")
 -- WazureGui:MakeTab(<string>)
