@@ -25,6 +25,15 @@ local WazureGui = WazureV1:Start({
 		})
 	end
 })
+--[[
+local WazureGui = WazureV1:Start({
+	["Name"] = <string>,
+	["Logo Player"] = <string>,
+	["Name Player"] = <string>,
+	["Tab Width"] = <number>,
+	["CloseCallBack"] = <function>
+})
+]]
 -- WazureGui:CloseUI()
 --// Make Tab
 local MainTab = WazureGui:MakeTab("Main")
