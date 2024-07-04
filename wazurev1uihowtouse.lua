@@ -9,6 +9,16 @@ local Notify = WazureV1:Notify({
 	["Time"] = 0.5,
 	["Delay"] = 5
 })
+--[[
+local Notify = WazureV1:Notify({
+	["Title"] = <string>,
+	["Content"] = <string>,
+	["Logo"] = <string>,
+	["Time"] = <number>,
+	["Delay"] = <number>
+})
+]]
+-- Notify:Close()
 --// Start
 local WazureGui = WazureV1:Start({
 	["Name"] = "W-azure (Remake)",
@@ -33,7 +43,7 @@ local WazureGui = WazureV1:Start({
 	["Tab Width"] = <number>,
 	["CloseCallBack"] = <function>
 })
-]]--
+]]
 -- WazureGui:CloseUI()
 --// Make Tab
 local MainTab = WazureGui:MakeTab("Main")
