@@ -322,7 +322,7 @@ function FlurioreLib:MakeNotify(NotifyConfig)
 		TextLabel2.TextColor3 = Color3.fromRGB(150.0000062584877, 150.0000062584877, 150.0000062584877)
 		TextLabel2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TextLabel2.BorderSizePixel = 0
-		TextLabel2.Position = UDim2.new(0, 10, 0, 29)
+		TextLabel2.Position = UDim2.new(0, 10, 0, 27)
 		TextLabel2.Parent = NotifyFrameReal
 		TextLabel2.Size = UDim2.new(1, -20, 0, 13)
 
@@ -450,7 +450,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 	Top.Parent = Main
 
 	TextLabel.Font = Enum.Font.GothamBold
-	TextLabel.Text = "  "..GuiConfig.NameHub
+	TextLabel.Text = GuiConfig.NameHub
 	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	TextLabel.TextSize = 14
 	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -458,14 +458,14 @@ function FlurioreLib:MakeGui(GuiConfig)
 	TextLabel.BackgroundTransparency = 0.9990000128746033
 	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	TextLabel.BorderSizePixel = 0
-	TextLabel.Size = UDim2.new(1, 0, 1, 0)
-	TextLabel.Position = UDim2.new(0, 2, 0, 0)
+	TextLabel.Size = UDim2.new(1, -100, 1, 0)
+	TextLabel.Position = UDim2.new(0, 10, 0, 0)
 	TextLabel.Parent = Top
 
 	UICorner1.Parent = Top
 
 	TextLabel1.Font = Enum.Font.GothamBold
-	TextLabel1.Text = " "..GuiConfig.Description
+	TextLabel1.Text = GuiConfig.Description
 	TextLabel1.TextColor3 = GuiConfig.Color
 	TextLabel1.TextSize = 14
 	TextLabel1.TextXAlignment = Enum.TextXAlignment.Left
@@ -473,8 +473,8 @@ function FlurioreLib:MakeGui(GuiConfig)
 	TextLabel1.BackgroundTransparency = 0.9990000128746033
 	TextLabel1.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	TextLabel1.BorderSizePixel = 0
-	TextLabel1.Size = UDim2.new(1, 0, 1, 0)
-	TextLabel1.Position = UDim2.new(0, TextLabel.TextBounds.X + 4, 0, 0)
+	TextLabel1.Size = UDim2.new(1, -(TextLabel.TextBounds.X + 104), 1, 0)
+	TextLabel1.Position = UDim2.new(0, TextLabel.TextBounds.X + 15, 0, 0)
 	TextLabel1.Parent = Top
 
 	UIStroke1.Color = GuiConfig.Color
@@ -718,7 +718,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 	NamePlayer.Parent = Info
 
 	function GuiFunc:DestroyGui()
-		if CoreGui:FindFirstChild(HirimiGui) then 
+		if CoreGui:FindFirstChild("HirimiGui") then 
 			HirimiGui:Destroy()
 		end
 	end
@@ -1106,7 +1106,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 			SectionTitle.BackgroundTransparency = 0.9990000128746033
 			SectionTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			SectionTitle.BorderSizePixel = 0
-			SectionTitle.Position = UDim2.new(0, 8, 0.5, 0)
+			SectionTitle.Position = UDim2.new(0, 10, 0.5, 0)
 			SectionTitle.Size = UDim2.new(1, -50, 0, 13)
 			SectionTitle.Name = "SectionTitle"
 			SectionTitle.Parent = SectionReal
@@ -1213,7 +1213,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Paragraph.BorderSizePixel = 0
 				Paragraph.LayoutOrder = CountItem
-				Paragraph.Size = UDim2.new(1, 0, 0, 45)
+				Paragraph.Size = UDim2.new(1, 0, 0, 46)
 				Paragraph.Name = "Paragraph"
 				Paragraph.Parent = SectionAdd
 
@@ -1230,7 +1230,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				ParagraphTitle.BackgroundTransparency = 0.9990000128746033
 				ParagraphTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				ParagraphTitle.BorderSizePixel = 0
-				ParagraphTitle.Position = UDim2.new(0, 8, 0, 8)
+				ParagraphTitle.Position = UDim2.new(0, 10, 0, 10)
 				ParagraphTitle.Size = UDim2.new(1, -16, 0, 13)
 				ParagraphTitle.Name = "ParagraphTitle"
 				ParagraphTitle.Parent = Paragraph
@@ -1246,7 +1246,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				ParagraphContent.BackgroundTransparency = 0.9990000128746033
 				ParagraphContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				ParagraphContent.BorderSizePixel = 0
-				ParagraphContent.Position = UDim2.new(0, 8, 0, 23)
+				ParagraphContent.Position = UDim2.new(0, 10, 0, 23)
 				ParagraphContent.Name = "ParagraphContent"
 				ParagraphContent.Parent = Paragraph
 
@@ -1256,17 +1256,8 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 				ParagraphContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
 					ParagraphContent.TextWrapped = false
-					TweenService:Create(
-						ParagraphContent,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, -16, 0, 12 + (12 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))}
-					):Play()
-					TweenService:Create(
-						Paragraph,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, 0, 0, ParagraphContent.AbsoluteSize.Y + 33)}
-					):Play()
-					task.wait(0.2)
+					ParagraphContent.Size = UDim2.new(1, -16, 0, 12 + (12 * (ParagraphContent.TextBounds.X // ParagraphContent.AbsoluteSize.X)))
+					Paragraph.Size = UDim2.new(1, 0, 0, ParagraphContent.AbsoluteSize.Y + 33)
 					ParagraphContent.TextWrapped = true
 					UpdateSizeSection()
 				end)
@@ -1307,7 +1298,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Button.BorderSizePixel = 0
 				Button.LayoutOrder = CountItem
-				Button.Size = UDim2.new(1, 0, 0, 45)
+				Button.Size = UDim2.new(1, 0, 0, 46)
 				Button.Name = "Button"
 				Button.Parent = SectionAdd
 
@@ -1324,7 +1315,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				ButtonTitle.BackgroundTransparency = 0.9990000128746033
 				ButtonTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				ButtonTitle.BorderSizePixel = 0
-				ButtonTitle.Position = UDim2.new(0, 8, 0, 8)
+				ButtonTitle.Position = UDim2.new(0, 10, 0, 10)
 				ButtonTitle.Size = UDim2.new(1, -100, 0, 13)
 				ButtonTitle.Name = "ButtonTitle"
 				ButtonTitle.Parent = Button
@@ -1340,7 +1331,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				ButtonContent.BackgroundTransparency = 0.9990000128746033
 				ButtonContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				ButtonContent.BorderSizePixel = 0
-				ButtonContent.Position = UDim2.new(0, 8, 0, 23)
+				ButtonContent.Position = UDim2.new(0, 10, 0, 23)
 				ButtonContent.Name = "ButtonContent"
 				ButtonContent.Parent = Button
 				ButtonContent.Size = UDim2.new(1, -100, 0, 12)
@@ -1351,17 +1342,8 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 				ButtonContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
 					ButtonContent.TextWrapped = false
-					TweenService:Create(
-						ButtonContent,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, -100, 0, 12 + (12 * (ButtonContent.TextBounds.X // ButtonContent.AbsoluteSize.X)))}
-					):Play()
-					TweenService:Create(
-						Button,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, 0, 0, ButtonContent.AbsoluteSize.Y + 33)}
-					):Play()
-					task.wait(0.2)
+					ButtonContent.Size = UDim2.new(1, -100, 0, 12 + (12 * (ButtonContent.TextBounds.X // ButtonContent.AbsoluteSize.X)))
+					Button.Size = UDim2.new(1, 0, 0, ButtonContent.AbsoluteSize.Y + 33)
 					ButtonContent.TextWrapped = true
 					UpdateSizeSection()
 				end)
@@ -1434,7 +1416,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Toggle.BorderSizePixel = 0
 				Toggle.LayoutOrder = CountItem
-				Toggle.Size = UDim2.new(1, 0, 0, 45)
+				Toggle.Size = UDim2.new(1, 0, 0, 46)
 				Toggle.Name = "Toggle"
 				Toggle.Parent = SectionAdd
 
@@ -1451,7 +1433,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				ToggleTitle.BackgroundTransparency = 0.9990000128746033
 				ToggleTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				ToggleTitle.BorderSizePixel = 0
-				ToggleTitle.Position = UDim2.new(0, 8, 0, 8)
+				ToggleTitle.Position = UDim2.new(0, 10, 0, 10)
 				ToggleTitle.Size = UDim2.new(1, -100, 0, 13)
 				ToggleTitle.Name = "ToggleTitle"
 				ToggleTitle.Parent = Toggle
@@ -1467,7 +1449,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				ToggleContent.BackgroundTransparency = 0.9990000128746033
 				ToggleContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				ToggleContent.BorderSizePixel = 0
-				ToggleContent.Position = UDim2.new(0, 8, 0, 23)
+				ToggleContent.Position = UDim2.new(0, 10, 0, 23)
 				ToggleContent.Size = UDim2.new(1, -100, 0, 12)
 				ToggleContent.Name = "ToggleContent"
 				ToggleContent.Parent = Toggle
@@ -1478,17 +1460,8 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 				ToggleContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
 					ToggleContent.TextWrapped = false
-					TweenService:Create(
-						ToggleContent,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, -100, 0, 12 + (12 * (ToggleContent.TextBounds.X // ToggleContent.AbsoluteSize.X)))}
-					):Play()
-					TweenService:Create(
-						Toggle,
-						TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, 0, 0, ToggleContent.AbsoluteSize.Y + 33)}
-					):Play()
-					task.wait(0.2)
+					ToggleContent.Size = UDim2.new(1, -100, 0, 12 + (12 * (ToggleContent.TextBounds.X // ToggleContent.AbsoluteSize.X)))
+					Toggle.Size = UDim2.new(1, 0, 0, ToggleContent.AbsoluteSize.Y + 33)
 					ToggleContent.TextWrapped = true
 					UpdateSizeSection()
 				end)
@@ -1543,43 +1516,43 @@ function FlurioreLib:MakeGui(GuiConfig)
 					if Value then
 						TweenService:Create(
 							ToggleTitle,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{TextColor3 = GuiConfig.Color}
 						):Play()
 						TweenService:Create(
 							ToggleCircle,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{Position = UDim2.new(0, 15, 0, 0)}
 						):Play()
 						TweenService:Create(
 							UIStroke8,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{Color = GuiConfig.Color, Transparency = 0}
 						):Play()
 						TweenService:Create(
 							FeatureFrame2,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{BackgroundColor3 = GuiConfig.Color, BackgroundTransparency = 0} 
 						):Play()
 					else
 						TweenService:Create(
 							ToggleTitle,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{TextColor3 = Color3.fromRGB(230.77499270439148, 230.77499270439148, 230.77499270439148)}
 						):Play()
 						TweenService:Create(
 							ToggleCircle,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{Position = UDim2.new(0, 0, 0, 0)}
 						):Play()
 						TweenService:Create(
 							UIStroke8,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{Color = Color3.fromRGB(255, 255, 255), Transparency = 0.9}
 						):Play()
 						TweenService:Create(
 							FeatureFrame2,
-							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
+							TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
 							{BackgroundColor3 = Color3.fromRGB(255, 255, 255), BackgroundTransparency = 0.9200000166893005}
 						):Play()
 					end
@@ -1621,7 +1594,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Slider.BorderSizePixel = 0
 				Slider.LayoutOrder = CountItem
-				Slider.Size = UDim2.new(1, 0, 0, 45)
+				Slider.Size = UDim2.new(1, 0, 0, 46)
 				Slider.Name = "Slider"
 				Slider.Parent = SectionAdd
 
@@ -1638,7 +1611,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				SliderTitle.BackgroundTransparency = 0.9990000128746033
 				SliderTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				SliderTitle.BorderSizePixel = 0
-				SliderTitle.Position = UDim2.new(0, 8, 0, 8)
+				SliderTitle.Position = UDim2.new(0, 10, 0, 10)
 				SliderTitle.Size = UDim2.new(1, -180, 0, 13)
 				SliderTitle.Name = "SliderTitle"
 				SliderTitle.Parent = Slider
@@ -1654,7 +1627,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				SliderContent.BackgroundTransparency = 0.9990000128746033
 				SliderContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				SliderContent.BorderSizePixel = 0
-				SliderContent.Position = UDim2.new(0, 8, 0, 23)
+				SliderContent.Position = UDim2.new(0, 10, 0, 23)
 				SliderContent.Size = UDim2.new(1, -180, 0, 12)
 				SliderContent.Name = "SliderContent"
 				SliderContent.Parent = Slider
@@ -1665,17 +1638,8 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 				SliderContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
 					SliderContent.TextWrapped = false
-					TweenService:Create(
-						SliderContent,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, -180, 0, 12 + (12 * (SliderContent.TextBounds.X // SliderContent.AbsoluteSize.X)))}
-					):Play()
-					TweenService:Create(
-						Slider,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, 0, 0, SliderContent.AbsoluteSize.Y + 33)}
-					):Play()
-					task.wait(0.2)
+					SliderContent.Size = UDim2.new(1, -180, 0, 12 + (12 * (SliderContent.TextBounds.X // SliderContent.AbsoluteSize.X)))
+					Slider.Size = UDim2.new(1, 0, 0, SliderContent.AbsoluteSize.Y + 33)
 					SliderContent.TextWrapped = true
 					UpdateSizeSection()
 				end)
@@ -1817,7 +1781,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				Input.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Input.BorderSizePixel = 0
 				Input.LayoutOrder = CountItem
-				Input.Size = UDim2.new(1, 0, 0, 45)
+				Input.Size = UDim2.new(1, 0, 0, 46)
 				Input.Name = "Input"
 				Input.Parent = SectionAdd
 
@@ -1834,7 +1798,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				InputTitle.BackgroundTransparency = 0.9990000128746033
 				InputTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				InputTitle.BorderSizePixel = 0
-				InputTitle.Position = UDim2.new(0, 8, 0, 8)
+				InputTitle.Position = UDim2.new(0, 10, 0, 10)
 				InputTitle.Size = UDim2.new(1, -180, 0, 13)
 				InputTitle.Name = "InputTitle"
 				InputTitle.Parent = Input
@@ -1851,7 +1815,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				InputContent.BackgroundTransparency = 0.9990000128746033
 				InputContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				InputContent.BorderSizePixel = 0
-				InputContent.Position = UDim2.new(0, 8, 0, 23)
+				InputContent.Position = UDim2.new(0, 10, 0, 23)
 				InputContent.Size = UDim2.new(1, -180, 0, 12)
 				InputContent.Name = "InputContent"
 				InputContent.Parent = Input
@@ -1862,17 +1826,8 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 				InputContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
 					InputContent.TextWrapped = false
-					TweenService:Create(
-						InputContent,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, -180, 0, 12 + (12 * (InputContent.TextBounds.X // InputContent.AbsoluteSize.X)))}
-					):Play()
-					TweenService:Create(
-						Input,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, 0, 0, InputContent.AbsoluteSize.Y + 33)}
-					):Play()
-					task.wait(0.2)
+					InputContent.Size = UDim2.new(1, -180, 0, 12 + (12 * (InputContent.TextBounds.X // InputContent.AbsoluteSize.X)))
+					Input.Size = UDim2.new(1, 0, 0, InputContent.AbsoluteSize.Y + 33)
 					InputContent.TextWrapped = true
 					UpdateSizeSection()
 				end)
@@ -1945,7 +1900,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				Dropdown.BorderSizePixel = 0
 				Dropdown.LayoutOrder = CountItem
-				Dropdown.Size = UDim2.new(1, 0, 0, 45)
+				Dropdown.Size = UDim2.new(1, 0, 0, 46)
 				Dropdown.Name = "Dropdown"
 				Dropdown.Parent = SectionAdd
 
@@ -1974,7 +1929,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				DropdownTitle.BackgroundTransparency = 0.9990000128746033
 				DropdownTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				DropdownTitle.BorderSizePixel = 0
-				DropdownTitle.Position = UDim2.new(0, 8, 0, 8)
+				DropdownTitle.Position = UDim2.new(0, 10, 0, 10)
 				DropdownTitle.Size = UDim2.new(1, -180, 0, 13)
 				DropdownTitle.Name = "DropdownTitle"
 				DropdownTitle.Parent = Dropdown
@@ -1991,7 +1946,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				DropdownContent.BackgroundTransparency = 0.9990000128746033
 				DropdownContent.BorderColor3 = Color3.fromRGB(0, 0, 0)
 				DropdownContent.BorderSizePixel = 0
-				DropdownContent.Position = UDim2.new(0, 8, 0, 23)
+				DropdownContent.Position = UDim2.new(0, 10, 0, 23)
 				DropdownContent.Size = UDim2.new(1, -180, 0, 12)
 				DropdownContent.Name = "DropdownContent"
 				DropdownContent.Parent = Dropdown
@@ -2002,17 +1957,8 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 				DropdownContent:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
 					DropdownContent.TextWrapped = false
-					TweenService:Create(
-						DropdownContent,
-						TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, -180, 0, 12 + (12 * (DropdownContent.TextBounds.X // DropdownContent.AbsoluteSize.X)))}
-					):Play()
-					TweenService:Create(
-						Dropdown,
-						TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-						{Size = UDim2.new(1, 0, 0, DropdownContent.AbsoluteSize.Y + 33)}
-					):Play()
-					task.wait(0.2)
+					DropdownContent.Size = UDim2.new(1, -180, 0, 12 + (12 * (DropdownContent.TextBounds.X // DropdownContent.AbsoluteSize.X)))
+					Dropdown.Size = UDim2.new(1, 0, 0, DropdownContent.AbsoluteSize.Y + 33)
 					DropdownContent.TextWrapped = true
 					UpdateSizeSection()
 				end)
