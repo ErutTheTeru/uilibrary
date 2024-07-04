@@ -33,7 +33,7 @@ local WazureGui = WazureV1:Start({
 	["Tab Width"] = <number>,
 	["CloseCallBack"] = <function>
 })
-]]
+]]--
 -- WazureGui:CloseUI()
 --// Make Tab
 local MainTab = WazureGui:MakeTab("Main")
