@@ -826,6 +826,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 	DropdownSelect.Position = UDim2.new(1, 172, 0.5, 0)
 	DropdownSelect.Size = UDim2.new(0, 160, 1, -16)
 	DropdownSelect.Name = "DropdownSelect"
+	DropdownSelect.ClipsDescendants = true
 	DropdownSelect.Parent = MoreBlur
 
 	ConnectButton.MouseButton1Down:Connect(function()
