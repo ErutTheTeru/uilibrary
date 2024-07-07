@@ -1,4 +1,4 @@
-local WazureV1 = loadstring(game:HttpGet("https://raw.githubusercontent.com/ErutTheTeru/uilibrary/main/wazurev1uimain.lua"))()
+local WazureV1 = loadstring(game:HttpGet("https://github.com/ErutTheTeru/uilibrary/blob/main/Wazure%20V1%20Lib/Source.lua?raw=true"))()
 local Notify = WazureV1:Notify({
 	["Title"] = "Alert",
 	["Content"] = "Loaded UI!",
