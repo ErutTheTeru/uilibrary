@@ -17,7 +17,7 @@ local FlurioreGui = FlurioreLib:MakeGui({
 })
 ```
 - Now you can add items to the gui
-- A [template](uilibrary/Fluriore%20Lib/Example.lua) is given if you want to see how items done
+- A [template](Fluriore%20Lib/Example.lua) is given if you want to see how items done
 # Fluriore Library: Document
 ## Create gui
 ```lua
