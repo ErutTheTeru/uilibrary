@@ -31,7 +31,7 @@ local FlurioreGui = FlurioreLib:MakeGui({
 	["Tab Width"] = <number>
 })
 ```
-## Notifications
+## Notification
 ```lua
 local Notify = FlurioreLib:MakeNotify({
 	["Title"] = <string>,
