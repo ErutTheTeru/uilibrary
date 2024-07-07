@@ -1,6 +1,6 @@
 # Fluriore Library
-- any bug & error, report in https://discord.gg/3Aatp4Nhjp 
 - made by Teru, discord: ruteteru
+- any bug & error, report in https://discord.gg/3Aatp4Nhjp 
 ## How to use?
 - Import the library
 ```lua
