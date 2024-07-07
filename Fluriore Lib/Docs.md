@@ -3,7 +3,7 @@ made by Teru, discord: ruteteru
 ## How to use?
 - Import the library.
 ```lua
-local FlurioreLib = loadstring(game:HttpGet("https://github.com/ErutTheTeru/uilibrary/blob/main/Fluriore%20Lib/Source.lua/raw=true"))()
+local FlurioreLib = loadstring(game:HttpGet("https://github.com/ErutTheTeru/uilibrary/blob/main/Fluriore%20Lib/Source.lua?raw=true"))()
 ```
 - Create gui
 ```lua
@@ -17,7 +17,7 @@ local FlurioreGui = FlurioreLib:MakeGui({
 })
 ```
 - Now you can add items to the gui
-- A [template](https://github.com/ErutTheTeru/uilibrary/tree/main/Fluriore%20Lib/Example.lua) is given if you want to see how items done
+- A [template](uilibrary/Fluriore%20Lib/Example.lua) is given if you want to see how items done
 # Fluriore Library: Document
 ## Create gui
 ```lua
