@@ -3,7 +3,7 @@ made by Teru, discord: ruteteru
 ## How to use?
 - Import the library.
 ```lua
-local FlurioreLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ErutTheTeru/uilibrary/main/flurioremain.lua"))()
+local FlurioreLib = loadstring(game:HttpGet("uilibrary/Fluriore%20Lib/Source/raw=true"))()
 ```
 - Create gui
 ```lua
