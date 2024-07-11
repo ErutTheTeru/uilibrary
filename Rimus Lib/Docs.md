@@ -152,3 +152,6 @@ print(unpack(MultiDropdown.Value))
 print(unpack(MultiDropdown.Options))
 ```
 # Rimus Library: Images
+![image](https://github.com/ErutTheTeru/uilibrary/assets/143543521/9fad745d-d277-4ac5-982a-435a10d24138)
+![image](https://github.com/ErutTheTeru/uilibrary/assets/143543521/b787824b-cdfd-4ad9-b2a0-403426a03e25)
+![image](https://github.com/ErutTheTeru/uilibrary/assets/143543521/5897f9ac-add9-4a5c-8687-d241d1ed2d46)
