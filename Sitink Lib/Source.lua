@@ -1090,7 +1090,7 @@ function sitinklib:Start(GuiConfig)
             local ScrollLayer1 = Instance.new("ScrollingFrame");
             local UIListLayout3 = Instance.new("UIListLayout");
 
-            ScrollLayer1.CanvasSize = UDim2.new(0, 0, 1.20000005, 0)
+            ScrollLayer1.CanvasSize = UDim2.new(0, 0, 0, 0)
             ScrollLayer1.ScrollBarImageTransparency = 0.8999999761581421
             ScrollLayer1.ScrollBarThickness = 3
             ScrollLayer1.Active = true
@@ -1121,7 +1121,7 @@ function sitinklib:Start(GuiConfig)
             Section.BorderSizePixel = 0
             Section.Size = UDim2.new(1, -8, 0, 44)
             Section.Name = "Section"
-            Section.LayoutOrder = CountTab + CountSection
+            Section.LayoutOrder = CountSection
             Section.Parent = ScrollLayer
 
             UICorner29.CornerRadius = UDim.new(0, 3)
@@ -1156,6 +1156,7 @@ function sitinklib:Start(GuiConfig)
             SectionDescription.Size = UDim2.new(1, -70, 0, 11)
             SectionDescription.Name = "SectionDescription"
             SectionDescription.Parent = Section
+
             if SectionDescription.Text == "" then
                 Section.Size = UDim2.new(1, -8, 0, 33)
             else
@@ -1200,7 +1201,7 @@ function sitinklib:Start(GuiConfig)
             SectionButton.Parent = Section
 
             SectionButton.MouseButton1Click:Connect(function()
-                UIPageLayout:JumpToIndex(Tab.LayoutOrder + Section.LayoutOrder)
+                UIPageLayout:JumpToIndex(ScrollLayer1.LayoutOrder)
                 TweenService:Create(
                     BackButton,
                     TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
@@ -2133,6 +2134,7 @@ function sitinklib:Start(GuiConfig)
                     Option1.BorderSizePixel = 0
                     Option1.Size = UDim2.new(1, 0, 0, 20)
                     Option1.Name = "Option"
+                    Option1.LayoutOrder = DropCount
                     Option1.Parent = ScrollUnder
 
                     UICorner23.CornerRadius = UDim.new(0, 3)
@@ -2200,6 +2202,7 @@ function sitinklib:Start(GuiConfig)
                             DropdownFunc:Set(DropdownFunc.Value)
                         end
                     end)
+                    DropCount = DropCount + 1
                 end
                 function DropdownFunc:Refresh(RefreshList, Selecting)
 					RefreshList = RefreshList or {}
