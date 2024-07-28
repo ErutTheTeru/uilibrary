@@ -415,7 +415,7 @@ function sitinklib:Notify(NotifyConfig)
 			task.wait(tonumber(NotifyConfig.Time) / 1.2)
 			NotifyFrame:Destroy()
 		end
-		NotifyClose.MouseButton1Click:Connect(function()
+		NotifyClose.Actived:Connect(function()
 			NotifyFunc:Close()
 		end)
 		TweenService:Create(
@@ -558,7 +558,7 @@ function sitinklib:Start(GuiConfig)
     function sitinklib:CloseUI()
         SitinkGui:Destroy()
     end
-    CloseButton.MouseButton1Click:Connect(function()
+    CloseButton.Actived:Connect(function()
         sitinklib:ToggleUI()
         GuiConfig.CloseCallBack()
     end)
@@ -778,7 +778,7 @@ function sitinklib:Start(GuiConfig)
     UIStroke5.Thickness = 4
     UIStroke5.Parent = LogoInfo
 
-    InfoButton.MouseButton1Click:Connect(function()
+    InfoButton.Actived:Connect(function()
         AnotherFrame.Visible = true
         TweenService:Create(
 			LogFrame,
@@ -786,7 +786,7 @@ function sitinklib:Start(GuiConfig)
 			{Size = UDim2.new(0, 250, 0, 125)}
 		):Play()
     end)
-    AnotherButton.MouseButton1Click:Connect(function()
+    AnotherButton.Actived:Connect(function()
         TweenService:Create(
 			LogFrame,
 			TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut),
@@ -931,7 +931,7 @@ function sitinklib:Start(GuiConfig)
         NameBack1.Position = UDim2.new(0, NameBack.Size.X.Offset, 0, 0)
         NameBack1.Size = UDim2.new(1,-(NameBack1.Position.X.Offset), 1, 0)
     end
-    BackButton.MouseButton1Click:Connect(function()
+    BackButton.Actived:Connect(function()
         JumpTo(BackButton.LayoutOrder, BackButton.Text)
     end)
 	--// Tabs
@@ -1037,7 +1037,7 @@ function sitinklib:Start(GuiConfig)
             Tab.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 			UIStroke.Transparency = 0
 		end
-        TabButton.MouseButton1Click:Connect(function()
+        TabButton.Actived:Connect(function()
             if Tab.LayoutOrder ~= UIPageLayout.CurrentPage.LayoutOrder then
                 for _, TabFrame in ScrollTab:GetChildren() do
                     if TabFrame.Name ~= "UIListLayout" then
@@ -1200,7 +1200,7 @@ function sitinklib:Start(GuiConfig)
             SectionButton.Name = "SectionButton"
             SectionButton.Parent = Section
 
-            SectionButton.MouseButton1Click:Connect(function()
+            SectionButton.Actived:Connect(function()
                 UIPageLayout:JumpToIndex(ScrollLayer1.LayoutOrder)
                 TweenService:Create(
                     BackButton,
@@ -1460,7 +1460,7 @@ function sitinklib:Start(GuiConfig)
                 ClickText.Name = "ClickText"
                 ClickText.Parent = ClickFrame
 
-                ButtonButton.MouseButton1Click:Connect(function()
+                ButtonButton.Actived:Connect(function()
 					ButtonConfig.Callback()
 				end)
                 EnterMouse(Button)
@@ -1747,7 +1747,7 @@ function sitinklib:Start(GuiConfig)
                     ToggleConfig.Callback(Value)
                 end
                 EnterMouse(Toggle)
-                ToggleButton.MouseButton1Click:Connect(function()
+                ToggleButton.Actived:Connect(function()
                     ToggleFunc.Value = not ToggleFunc.Value
                     ToggleFunc:Set(ToggleFunc.Value)
                 end)
@@ -2183,7 +2183,7 @@ function sitinklib:Start(GuiConfig)
                     OptionButton.Name = "OptionButton"
                     OptionButton.Parent = Option1
                     
-                    OptionButton.MouseButton1Click:Connect(function()
+                    OptionButton.Actived:Connect(function()
                         if DropdownConfig.Multi then
                             if (Option1.BackgroundColor3.R * 255) <= 55 then
                                 table.insert(DropdownFunc.Value, OptionText.Text)
@@ -2217,7 +2217,7 @@ function sitinklib:Start(GuiConfig)
 				end
 				DropdownFunc:Refresh(DropdownFunc.Options, DropdownFunc.Value)
                 local StartInput = false
-                DropdownButton.MouseButton1Click:Connect(function()
+                DropdownButton.Actived:Connect(function()
                     if Dropdown.Size.Y.Offset > 44 then
                         TweenService:Create(
                             Dropdown,
