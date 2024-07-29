@@ -1,6 +1,6 @@
 getgenv().save = function(foldername, filename, filecontent)
     local filename = foldername.."/"..filename..".json"
-    local filecontent = HttpService:JSONEncode(filecontent)
+    local filecontent = game:GetService("HttpService"):JSONEncode(filecontent)
     if isfolder(foldername) then
         writefile(filename, filecontent)
     else
