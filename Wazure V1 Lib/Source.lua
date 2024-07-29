@@ -1027,9 +1027,9 @@ function WazureV1:Start(GuiConfig)
 					AnotherPageLayout:JumpToIndex(AnotherFrame.LayoutOrder)
 					MoreFrame.Visible = true
 				end)
-				ItemFunc["Setting Item"] = {}
+				local SettingItem = {}
 				local CountSettingItem = 0
-				function ItemFunc["Setting Item"]:Toggle(ToggleName, ToggleConfig)
+				function SettingItem:Toggle(ToggleName, ToggleConfig)
 					local ToggleConfig = ToggleConfig or {}
 					ToggleConfig.Name = ToggleConfig.Name or "Toggle"
 					ToggleConfig.Default = ToggleConfig.Default or false
@@ -1107,9 +1107,6 @@ function WazureV1:Start(GuiConfig)
 
 					function ToggleFunc:Set(Value)
 						Value = Value or ToggleFunc.Value
-						if GuiConfig["Save Config"].Enabled then
-							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-						end
 						if Value then
 							TweenService:Create(
 								AnotherToggleButton,
@@ -1154,6 +1151,9 @@ function WazureV1:Start(GuiConfig)
 							):Play()
 						end
 						ToggleFunc.Value = Value
+						if GuiConfig["Save Config"].Enabled then
+							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+						end
 						ToggleConfig.Callback(Value)
 					end
 					EnterMouseGUI(AnotherToggle)
@@ -1163,11 +1163,12 @@ function WazureV1:Start(GuiConfig)
 					end)
 					ToggleFunc:Set(ToggleFunc.Value)
 
+					SettingItem[ToggleName] = ToggleFunc
 					ItemFunc["Setting Item"][ToggleName] = ToggleFunc
 					CountSettingItem = CountSettingItem + 1
 					return ToggleFunc
 				end
-				function ItemFunc["Setting Item"]:Slider(SliderName, SliderConfig)
+				function SettingItem:Slider(SliderName, SliderConfig)
 					local SliderConfig = SliderConfig or {}
 					SliderConfig.Name = SliderConfig.Name or "Slider"
 					SliderConfig.Increment = SliderConfig.Increment or 1
@@ -1255,9 +1256,6 @@ function WazureV1:Start(GuiConfig)
 					end
 					function SliderFunc:Set(Value)
 						Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
-						if GuiConfig["Save Config"].Enabled then
-							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-						end
 						SliderFunc.Value = Value
 						AnotherSliderName.Text = SliderConfig.Name.." / "..tostring(Value)
 						TweenService:Create(
@@ -1265,6 +1263,9 @@ function WazureV1:Start(GuiConfig)
 							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 							{Size = UDim2.fromScale((Value - SliderConfig.Min) / (SliderConfig.Max - SliderConfig.Min), 1)}
 						):Play()
+						if GuiConfig["Save Config"].Enabled then
+							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+						end
 						SliderConfig.Callback(Value)
 					end
 					AnotherSlider.InputBegan:Connect(function(Input)
@@ -1286,6 +1287,7 @@ function WazureV1:Start(GuiConfig)
 					EnterMouseGUI(AnotherSlider)
 					SliderFunc:Set(tonumber(SliderConfig.Default))
 
+					Setting[SliderName] = SliderFunc
 					ItemFunc["Setting Item"][SliderName] = SliderFunc
 					CountSettingItem = CountSettingItem + 1
 					return SliderFunc
@@ -1315,12 +1317,12 @@ function WazureV1:Start(GuiConfig)
 			Seperator.Parent = ScrollLayers
 
 			function SeperatorFunc:Set(Value)
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				Value = Value or Seperator.Text
 				SeperatorFunc.Value = Value
 				Seperator.Text = tostring(Value)
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+				end
 			end
 			SeperatorFunc:Set(SeperatorName)
 
@@ -1392,12 +1394,12 @@ function WazureV1:Start(GuiConfig)
 				UpSize2()
 			end
 			function LabelFunc:Set(Value)
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				Value = Value or LabelText.Text
 				LabelFunc.Value = Value
 				LabelText.Text = tostring(Value)
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+				end
 			end
 			LabelText:GetPropertyChangedSignal("Text"):Connect(function() 
 				LabelFunc:AutoSize() 
@@ -1602,12 +1604,12 @@ function WazureV1:Start(GuiConfig)
 			InputBox.Name = "InputBox"
 			InputBox.Parent = InputInput
 			function TextInputFunc:Set(Value)
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				Value = Value or InputBox.Text
 				InputBox.Text = Value
 				TextInputFunc.Value = Value
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+				end
 				TextInputConfig.Callback(Value)
 			end
 			EnterMouseGUI(Input)
@@ -1737,9 +1739,6 @@ function WazureV1:Start(GuiConfig)
 
 			function ToggleFunc:Set(Value)
 				Value = Value or ToggleFunc.Value
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				if Value then
 					TweenService:Create(
 						ToggleTitle,
@@ -1784,6 +1783,9 @@ function WazureV1:Start(GuiConfig)
 					):Play()
 				end
 				ToggleFunc.Value = Value
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+				end
 				ToggleConfig.Callback(Value)
 			end
 			EnterMouseGUI(Toggle)
@@ -1792,7 +1794,6 @@ function WazureV1:Start(GuiConfig)
 				ToggleFunc:Set(ToggleFunc.Value)
 			end)
 			ToggleFunc:Set(ToggleFunc.Value)
-
 			AddSetting(ToggleFunc, Toggle)
 
 			Items[ToggleName] = ToggleFunc
@@ -2049,9 +2050,6 @@ function WazureV1:Start(GuiConfig)
 			end
 			function SliderFunc:Set(Value)
 				Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				SliderFunc.Value = Value
 				SliderNumber.Text = tostring(Value)
 				TweenService:Create(
@@ -2059,6 +2057,9 @@ function WazureV1:Start(GuiConfig)
 					TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 					{Size = UDim2.fromScale((Value - SliderConfig.Min) / (SliderConfig.Max - SliderConfig.Min), 1)}
 				):Play()
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+				end
 				SliderConfig.Callback(Value)
 			end
 			Slider.InputBegan:Connect(function(Input)
@@ -2315,9 +2316,6 @@ function WazureV1:Start(GuiConfig)
 			end
 			function DropdownFunc:Set(Value)
 				DropdownFunc.Value = Value or DropdownFunc.Value
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				for _, Drop in ScrollDrop:GetChildren() do
 					if Drop.Name ~= "UIListLayout" and not table.find(DropdownFunc.Value, Drop.DropChooseFrame.ChooseButton.Text) then
 						TweenService:Create(
@@ -2358,6 +2356,9 @@ function WazureV1:Start(GuiConfig)
 					DropFrameText.Text = ""
 				else
 					DropFrameText.Text = tostring(DropdownValueTable)
+				end
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				DropdownConfig.Callback(DropdownFunc.Value)
 			end
