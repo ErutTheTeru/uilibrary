@@ -28,10 +28,13 @@ local WazureGui = WazureV1:Start({
 		})
 	end
 })
-local MainTab = WazureGui:MakeTab("Main")
-local Seperator = MainTab:Seperator("Main")
-local Label = MainTab:Label("This is a label")
-local Button = MainTab:Button("Button", {
+local Tabs = {
+	MainTab = WazureGui:MakeTab("Main"),
+	SubFarmTab = WazureGui:MakeTab("Sub Farming")
+}
+local Seperator = Tabs.MainTab:MakeSeperator("Main")
+local Label = Tabs.MainTab:MakeLabel("This is a label")
+local Button = Tabs.MainTab:MakeButton("Button", {
 	["Title"] = "Button",
 	["Content"] = "This is a button",
 	["Logo"] = "rbxassetid://18271082015",
@@ -39,14 +42,14 @@ local Button = MainTab:Button("Button", {
 		print("Button Clicked!")
 	end
 })
-local TextInput = MainTab:TextInput("Text Input", {
+local TextInput = Tabs.MainTab:MakeTextInput("Text Input", {
 	["Title"] = "Webhook",
 	["Content"] = "Enter your webhook here",
 	["Callback"] = function(Value)
 		print(Value)
 	end
 })
-local Toggle = MainTab:Toggle("Toggle", {
+local Toggle = Tabs.MainTab:MakeToggle("Toggle", {
 	["Title"]= "Toggle",
 	["Content"] = "This is a Toggle",
 	["Default"] = false,
@@ -72,7 +75,7 @@ local SliderSetting = ToggleSetting:Slider("Setting Slider", {
 		print(Value)
 	end
 })
-local Slider = MainTab:Slider("Slider", {
+local Slider = Tabs.MainTab:MakeSlider("Slider", {
 	["Title"] = "Slider",
 	["Content"] = "This is a Slider",
 	["Min"] = 0,
@@ -83,7 +86,7 @@ local Slider = MainTab:Slider("Slider", {
 		print(Value)
 	end
 })
-local Dropdown = MainTab:Dropdown("Dropdown", {
+local Dropdown = Tabs.MainTab:MakeDropdown("Dropdown", {
 	["Title"] = "Dropdown",
 	["Content"] = "This is a dropdown",
 	["Multi"] = false,
@@ -93,7 +96,7 @@ local Dropdown = MainTab:Dropdown("Dropdown", {
 		print(Value)
 	end
 })
-local MultiDropdown = MainTab:Dropdown("Multi Dropdown", {
+local MultiDropdown = Tabs.MainTab:MakeDropdown("Multi Dropdown", {
 	["Title"] = "Multi Dropdown",
 	["Content"] = "This is a multi dropdown",
 	["Multi"] = true,
@@ -103,4 +106,3 @@ local MultiDropdown = MainTab:Dropdown("Multi Dropdown", {
 		print(Value)
 	end
 })
-local SubFarmTab = WazureGui:MakeTab("Sub Farming")
