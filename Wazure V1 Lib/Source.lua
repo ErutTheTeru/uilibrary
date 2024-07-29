@@ -800,6 +800,9 @@ function WazureV1:Start(GuiConfig)
 	local Tabs = {}
 	local CountTab = 0
 	local CountSetting = 0
+	function WazureV1:LoadSetting()
+		loadsetting(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
+	end
 	function Tabs:MakeTab(TabName)
 		TabName = TabName or "Tab"
 		local ScrollLayers = Instance.new("ScrollingFrame");
