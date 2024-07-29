@@ -1027,7 +1027,7 @@ function WazureV1:Start(GuiConfig)
 					AnotherPageLayout:JumpToIndex(AnotherFrame.LayoutOrder)
 					MoreFrame.Visible = true
 				end)
-				Item["Setting Item"] = {}
+				ItemFunc["Setting Item"] = {}
 				local SettingItem = {}
 				local CountSettingItem = 0
 				function SettingItem:Toggle(ToggleName, ToggleConfig)
