@@ -71,7 +71,7 @@ local MainTab = WazureGui:MakeTab(<string>)
 ```
 ## Seperator
 ```lua
-local Seperator = MainTab:Seperator(<string>)
+local Seperator = MainTab:MakeSeperator(<string>)
 ```
 - Seperator Function
 ```lua
@@ -80,7 +80,7 @@ print(Seperator.Value)
 ```
 ## Label
 ```lua
-local Label = MainTab:Label(<string>)
+local Label = MainTab:MakeLabel(<string>)
 ```
 - Label Function
 ```lua
@@ -90,7 +90,7 @@ print(Label.Value)
 ```
 ## Button
 ```lua
-local Button = MainTab:Button(<string>, {
+local Button = MainTab:MakeButton(<string>, {
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Logo"] = <string>,
@@ -99,7 +99,7 @@ local Button = MainTab:Button(<string>, {
 ```
 ## Text Input
 ```lua
-local TextInput = MainTab:TextInput(<string>,{
+local TextInput = MainTab:MakeTextInput(<string>,{
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Callback"] = <function>
@@ -112,7 +112,7 @@ print(TextInput.Value)
 ```
 ## Toggle
 ```lua
-local Toggle = MainTab:Toggle(<string>, {
+local Toggle = MainTab:MakeToggle(<string>, {
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Default"] = <boolean>,
@@ -159,7 +159,7 @@ print(SliderSetting.Value)
 ```
 ## Slider
 ```lua
-local Slider = MainTab:Slider(<string>, {
+local Slider = MainTab:MakeSlider(<string>, {
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Min"] = <number>,
@@ -176,7 +176,7 @@ print(Slider.Value)
 ```
 ## Dropdown
 ```lua
-local Dropdown = MainTab:Dropdown(<string>, {
+local Dropdown = MainTab:MakeDropdown(<string>, {
     ["Title"]= <string>,
 	["Content"] = <string>,
 	["Multi"] = <boolean>,
