@@ -1,14 +1,16 @@
-function getgenv().save(foldername, filename, filecontent)
+getgenv().save = function(foldername, filename, filecontent)
+    local filename = foldername.."/"..filename..".json"
     local filecontent = HttpService:JSONEncode(filecontent)
     if isfolder(foldername) then
         writefile(filename, filecontent)
     else
-        writefile(filename, filecontent)
         makefolder(foldername)
+        writefile(filename, filecontent)
     end
 end
 
-function getgenv().readdata(foldername, filename, tabs)
+getgenv().readdata = function(foldername, filename, tabs)
+    local filename = foldername.."/"..filename..".json"
     if isfolder(foldername) then
         if isfile(filename) then
             return game:GetService("HttpService"):JSONDecode(readfile(filename))
@@ -17,7 +19,7 @@ function getgenv().readdata(foldername, filename, tabs)
     return tabs
 end
 
-function getgenv().loadsetting(foldername, filename, tabs)
+getgenv().loadsetting = function(foldername, filename, tabs)
     local UIConfig = readdata(foldername, filename, tabs)
     for Tab, TabFunc in tabs do
         for NameItem, Item in TabFunc do
