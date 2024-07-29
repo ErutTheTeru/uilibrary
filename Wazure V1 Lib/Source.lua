@@ -306,15 +306,8 @@ function WazureV1:Start(GuiConfig)
 	GuiConfig["Tab Width"] = GuiConfig["Tab Width"] or 120
 	GuiConfig["Color"] = GuiConfig["Color"] or Color3.fromRGB(6.000000117346644, 141.0000067949295, 234.00000125169754)
 	GuiConfig["Custom Toggle"] = GuiConfig["Custom Toggle"] or false
-	GuiConfig["Save Config"] = GuiConfig["Save Config"] or {}
-	GuiConfig["Save Config"].Enabled = GuiConfig["Save Config"].Enabled or false
-	GuiConfig["Save Config"]["Name Folder"] = GuiConfig["Save Config"]["Name Folder"] or GuiConfig.Name
-	GuiConfig["Save Config"]["Name Config"] = GuiConfig["Save Config"]["Name Config"] or GuiConfig.Name
 	GuiConfig["CloseCallBack"] = GuiConfig["CloseCallBack"] or function() end
 
-	if GuiConfig["Save Config"].Enabled then
-		loadstring(game:HttpGet("https://github.com/ErutTheTeru/uilibrary/blob/main/Setting%20Func/Source.lua?raw=true"))()
-	end
 	local GuiFunc = {}
 
 	local AzuGui = Instance.new("ScreenGui");
@@ -800,9 +793,6 @@ function WazureV1:Start(GuiConfig)
 	local Tabs = {}
 	local CountTab = 0
 	local CountSetting = 0
-	function WazureV1:LoadSetting()
-		loadsetting(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-	end
 	function Tabs:MakeTab(TabName)
 		TabName = TabName or "Tab"
 		local ScrollLayers = Instance.new("ScrollingFrame");
@@ -1324,12 +1314,8 @@ function WazureV1:Start(GuiConfig)
 				Value = Value or Seperator.Text
 				SeperatorFunc.Value = Value
 				Seperator.Text = tostring(Value)
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 			end
 			SeperatorFunc:Set(SeperatorName)
-
 			Items[SeperatorName] = SeperatorFunc
 			CountItem = CountItem + 1
 			return SeperatorFunc
@@ -1401,9 +1387,6 @@ function WazureV1:Start(GuiConfig)
 				Value = Value or LabelText.Text
 				LabelFunc.Value = Value
 				LabelText.Text = tostring(Value)
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 			end
 			LabelText:GetPropertyChangedSignal("Text"):Connect(function() 
 				LabelFunc:AutoSize() 
@@ -1412,7 +1395,6 @@ function WazureV1:Start(GuiConfig)
 				LabelFunc:AutoSize()
 			end)
 			LabelFunc:Set(tostring(LabelName))
-
 			Items[LabelName] = LabelFunc
 			CountItem = CountItem + 1
 			return LabelFunc
@@ -1611,9 +1593,6 @@ function WazureV1:Start(GuiConfig)
 				Value = Value or InputBox.Text
 				InputBox.Text = Value
 				TextInputFunc.Value = Value
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				TextInputConfig.Callback(Value)
 			end
 			EnterMouseGUI(Input)
@@ -1621,7 +1600,7 @@ function WazureV1:Start(GuiConfig)
 				TextInputFunc:Set(InputBox.Text)
 			end)
 			AddSetting(TextInputFunc, Input)
-			
+
 			Items[TextInputName] = TextInputFunc
 			CountItem = CountItem + 1
 			return TextInputFunc
@@ -1787,9 +1766,6 @@ function WazureV1:Start(GuiConfig)
 					):Play()
 				end
 				ToggleFunc.Value = Value
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				ToggleConfig.Callback(Value)
 			end
 			EnterMouseGUI(Toggle)
@@ -1797,8 +1773,8 @@ function WazureV1:Start(GuiConfig)
 				ToggleFunc.Value = not ToggleFunc.Value
 				ToggleFunc:Set(ToggleFunc.Value)
 			end)
-			ToggleFunc:Set(ToggleFunc.Value)
 			AddSetting(ToggleFunc, Toggle)
+			ToggleFunc:Set(ToggleFunc.Value)
 
 			Items[ToggleName] = ToggleFunc
 			CountItem = CountItem + 1
@@ -2061,9 +2037,6 @@ function WazureV1:Start(GuiConfig)
 					TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 					{Size = UDim2.fromScale((Value - SliderConfig.Min) / (SliderConfig.Max - SliderConfig.Min), 1)}
 				):Play()
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-				end
 				SliderConfig.Callback(Value)
 			end
 			Slider.InputBegan:Connect(function(Input)
@@ -2360,9 +2333,6 @@ function WazureV1:Start(GuiConfig)
 					DropFrameText.Text = ""
 				else
 					DropFrameText.Text = tostring(DropdownValueTable)
-				end
-				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				DropdownConfig.Callback(DropdownFunc.Value)
 			end
