@@ -1,3 +1,13 @@
+getgenv().readdata = function(foldername, filename, tabs)
+    local filename = foldername.."/"..filename..".json"
+    if isfolder(foldername) then
+        if isfile(filename) then
+            return game:GetService("HttpService"):JSONDecode(readfile(filename))
+        end
+    end
+    return tabs
+end
+
 getgenv().save = function(foldername, filename, filecontent)
     local filename = foldername.."/"..filename..".json"
     local filecontent = game:GetService("HttpService"):JSONEncode(filecontent)
@@ -7,16 +17,6 @@ getgenv().save = function(foldername, filename, filecontent)
         makefolder(foldername)
         writefile(filename, filecontent)
     end
-end
-
-getgenv().readdata = function(foldername, filename, tabs)
-    local filename = foldername.."/"..filename..".json"
-    if isfolder(foldername) then
-        if isfile(filename) then
-            return game:GetService("HttpService"):JSONDecode(readfile(filename))
-        end
-    end
-    return tabs
 end
 
 getgenv().loadsetting = function(foldername, filename, tabs)
