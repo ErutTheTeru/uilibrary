@@ -1,3 +1,9 @@
+getgenv().readdata = function(foldername, filename, tabs)
+end
+getgenv().save = function(foldername, filename, filecontent)
+end
+getgenv().loadsetting = function(foldername, filename, tabs)
+end
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
@@ -305,6 +311,9 @@ function WazureV1:Start(GuiConfig)
 	GuiConfig["Name Player"] = GuiConfig["Name Player"] or tostring(game:GetService("Players").LocalPlayer.Name)
 	GuiConfig["Tab Width"] = GuiConfig["Tab Width"] or 120
 	GuiConfig["Color"] = GuiConfig["Color"] or Color3.fromRGB(6.000000117346644, 141.0000067949295, 234.00000125169754)
+	GuiConfig["Save Config"] = GuiConfig["Save Config"] or {}
+	GuiConfig["Save Config"].Folder = GuiConfig["Save Config"].Folder or GuiConfig.Name
+	GuiConfig["Save Config"]["Name Config"] = GuiConfig["Save Config"]["Name Config"] or "Config"
 	GuiConfig["Custom Toggle"] = GuiConfig["Custom Toggle"] or false
 	GuiConfig["CloseCallBack"] = GuiConfig["CloseCallBack"] or function() end
 
@@ -1145,9 +1154,7 @@ function WazureV1:Start(GuiConfig)
 							):Play()
 						end
 						ToggleFunc.Value = Value
-						if GuiConfig["Save Config"].Enabled then
-							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-						end
+						save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 						ToggleConfig.Callback(Value)
 					end
 					EnterMouseGUI(AnotherToggle)
@@ -1257,9 +1264,7 @@ function WazureV1:Start(GuiConfig)
 							TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 							{Size = UDim2.fromScale((Value - SliderConfig.Min) / (SliderConfig.Max - SliderConfig.Min), 1)}
 						):Play()
-						if GuiConfig["Save Config"].Enabled then
-							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
-						end
+						save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 						SliderConfig.Callback(Value)
 					end
 					AnotherSlider.InputBegan:Connect(function(Input)
@@ -1314,6 +1319,7 @@ function WazureV1:Start(GuiConfig)
 				Value = Value or Seperator.Text
 				SeperatorFunc.Value = Value
 				Seperator.Text = tostring(Value)
+				save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 			end
 			SeperatorFunc:Set(SeperatorName)
 			Items[SeperatorName] = SeperatorFunc
@@ -1387,6 +1393,7 @@ function WazureV1:Start(GuiConfig)
 				Value = Value or LabelText.Text
 				LabelFunc.Value = Value
 				LabelText.Text = tostring(Value)
+				save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 			end
 			LabelText:GetPropertyChangedSignal("Text"):Connect(function() 
 				LabelFunc:AutoSize() 
@@ -1593,6 +1600,7 @@ function WazureV1:Start(GuiConfig)
 				Value = Value or InputBox.Text
 				InputBox.Text = Value
 				TextInputFunc.Value = Value
+				save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				TextInputConfig.Callback(Value)
 			end
 			EnterMouseGUI(Input)
@@ -1766,6 +1774,7 @@ function WazureV1:Start(GuiConfig)
 					):Play()
 				end
 				ToggleFunc.Value = Value
+				save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				ToggleConfig.Callback(Value)
 			end
 			EnterMouseGUI(Toggle)
@@ -2037,6 +2046,7 @@ function WazureV1:Start(GuiConfig)
 					TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 					{Size = UDim2.fromScale((Value - SliderConfig.Min) / (SliderConfig.Max - SliderConfig.Min), 1)}
 				):Play()
+				save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				SliderConfig.Callback(Value)
 			end
 			Slider.InputBegan:Connect(function(Input)
@@ -2334,6 +2344,7 @@ function WazureV1:Start(GuiConfig)
 				else
 					DropFrameText.Text = tostring(DropdownValueTable)
 				end
+				save(GuiConfig["Save Config"]["Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				DropdownConfig.Callback(DropdownFunc.Value)
 			end
 			function DropdownFunc:AddOption(OptionName)
