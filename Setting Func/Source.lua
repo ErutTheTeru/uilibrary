@@ -23,7 +23,7 @@ getgenv().loadsetting = function(foldername, filename, tabs)
     local UIConfig = readdata(foldername, filename, tabs)
     for Tab, TabFunc in tabs do
         for NameItem, Item in TabFunc do
-            if Item.Type then
+            if type(Item) == "table" then
                 if Item.Type == "Dropdown" then
                     for _, v in Item.Value do
                         if not Win11Config[Tab][NameItem] or not Win11Config[Tab][NameItem].Value[v] then
