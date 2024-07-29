@@ -23,22 +23,17 @@ getgenv().loadsetting = function(foldername, filename, tabs)
     local UIConfig = readdata(foldername, filename, tabs)
     for Tab, TabFunc in tabs do
         for NameItem, Item in TabFunc do
-            if type(Item) == "table" then
+            if Item.Type then
                 if Item.Type == "Dropdown" then
-                    for _, v in Item.Value do
-                        if not Win11Config[Tab][NameItem] or not Win11Config[Tab][NameItem].Value[v] then
-                            Item:Set(Win11Config[Tab][NameItem].Value)
-                            break
-                        end
-                    end
+                    Item:Refresh(UIConfig[Tab][NameItem].Option, UIConfig[Tab][NameItem].Value)
                 else
-                    if v.Type ~= "Button" and Win11Config[Tab][NameItem] and Win11Config[Tab][NameItem].Value ~= Item.Value then
-                        Item:Set(Win11Config[Tab][NameItem].Value)
+                    if v.Type ~= "Button" and UIConfig[Tab][NameItem] and UIConfig[Tab][NameItem].Value ~= Item.Value then
+                        Item:Set(UIConfig[Tab][NameItem].Value)
                     end
                     if Item["Setting Item"] then
                         for _, v in Item["Setting Item"] do
-                            if Win11Config[Tab][NameItem]["Setting Item"] and Win11Config[Tab][NameItem]["Setting Item"] ~= v.Value then
-                                v:Set(Win11Config[Tab][NameItem]["Setting Item"].Value)
+                            if UIConfig[Tab][NameItem]["Setting Item"] and UIConfig[Tab][NameItem]["Setting Item"] ~= v.Value then
+                                v:Set(UIConfig[Tab][NameItem]["Setting Item"].Value)
                             end
                         end
                     end
