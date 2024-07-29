@@ -13,11 +13,6 @@ local WazureGui = WazureV1:Start({
 	["Tab Width"] = 120,
 	["Color"] = Color3.fromRGB(6.000000117346644, 141.0000067949295, 234.00000125169754),
 	["Custom Toggle"] = false,
-	["Save Config"] = {
-		["Enabled"] = true,
-		["Name Folder"] = "W-azure",
-		["Name Config"] = "Config",
-	},
 	["CloseCallBack"] = function()
 		WazureV1:Notify({
 			["Title"] = "Alert",
