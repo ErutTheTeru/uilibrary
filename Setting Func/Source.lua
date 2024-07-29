@@ -1,4 +1,5 @@
 getgenv().save = function(foldername, filename, filecontent)
+    print(unpack(filecontent))
     local filename = foldername.."/"..filename..".json"
     local filecontent = game:GetService("HttpService"):JSONEncode(filecontent)
     if isfolder(foldername) then
