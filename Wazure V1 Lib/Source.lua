@@ -1029,7 +1029,7 @@ function WazureV1:Start(GuiConfig)
 				end)
 				ItemFunc["Setting Item"] = {}
 				local CountSettingItem = 0
-				function SettingItem:Toggle(ToggleName, ToggleConfig)
+				function ItemFunc["Setting Item"]:Toggle(ToggleName, ToggleConfig)
 					local ToggleConfig = ToggleConfig or {}
 					ToggleConfig.Name = ToggleConfig.Name or "Toggle"
 					ToggleConfig.Default = ToggleConfig.Default or false
@@ -1167,7 +1167,7 @@ function WazureV1:Start(GuiConfig)
 					CountSettingItem = CountSettingItem + 1
 					return ToggleFunc
 				end
-				function SettingItem:Slider(SliderName, SliderConfig)
+				function ItemFunc["Setting Item"]:Slider(SliderName, SliderConfig)
 					local SliderConfig = SliderConfig or {}
 					SliderConfig.Name = SliderConfig.Name or "Slider"
 					SliderConfig.Increment = SliderConfig.Increment or 1
