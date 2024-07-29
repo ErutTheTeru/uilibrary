@@ -306,7 +306,15 @@ function WazureV1:Start(GuiConfig)
 	GuiConfig["Tab Width"] = GuiConfig["Tab Width"] or 120
 	GuiConfig["Color"] = GuiConfig["Color"] or Color3.fromRGB(6.000000117346644, 141.0000067949295, 234.00000125169754)
 	GuiConfig["Custom Toggle"] = GuiConfig["Custom Toggle"] or false
+	GuiConfig["Save Config"] = GuiConfig["Save Config"] or {}
+	GuiConfig["Save Config"].Enabled = GuiConfig["Save Config"].Enabled or false
+	GuiConfig["Save Config"]["Name Folder"] = GuiConfig["Save Config"]["Name Folder"] or GuiConfig.Name
+	GuiConfig["Save Config"]["Name Config"] = GuiConfig["Save Config"]["Name Config"] or GuiConfig.Name
 	GuiConfig["CloseCallBack"] = GuiConfig["CloseCallBack"] or function() end
+
+	if GuiConfig["Save Config"].Enabled then
+		loadstring(game:HttpGet("https://github.com/ErutTheTeru/uilibrary/blob/main/Setting%20Func/Source.lua?raw=true"))()
+	end
 	local GuiFunc = {}
 
 	local AzuGui = Instance.new("ScreenGui");
@@ -1019,14 +1027,15 @@ function WazureV1:Start(GuiConfig)
 					AnotherPageLayout:JumpToIndex(AnotherFrame.LayoutOrder)
 					MoreFrame.Visible = true
 				end)
-				local SettingItem = {}
+				ItemFunc["Setting Item"] = {}
 				local CountSettingItem = 0
-				function SettingItem:Toggle(ToggleConfig)
+				function SettingItem:Toggle(ToggleName, ToggleConfig)
 					local ToggleConfig = ToggleConfig or {}
 					ToggleConfig.Name = ToggleConfig.Name or "Toggle"
 					ToggleConfig.Default = ToggleConfig.Default or false
 					ToggleConfig.Callback = ToggleConfig.Callback or function() end
-					local ToggleFunc = {Value = ToggleConfig.Default}
+					local ToggleFunc = {Type = "Toggle", Value = ToggleConfig.Default}
+					local ToggleName = ToggleName or ToggleConfig.Title
 
 					local AnotherToggle = Instance.new("Frame");
 					local UICorner33 = Instance.new("UICorner");
@@ -1097,6 +1106,10 @@ function WazureV1:Start(GuiConfig)
 					AnotherSwitchImage.Parent = AnotherToggleSwitch2
 
 					function ToggleFunc:Set(Value)
+						Value = Value or ToggleFunc.Value
+						if GuiConfig["Save Config"].Enabled then
+							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+						end
 						if Value then
 							TweenService:Create(
 								AnotherToggleButton,
@@ -1149,10 +1162,12 @@ function WazureV1:Start(GuiConfig)
 						ToggleFunc:Set(ToggleFunc.Value)
 					end)
 					ToggleFunc:Set(ToggleFunc.Value)
+
+					ItemFunc["Setting Item"][ToggleName] = ToggleFunc
 					CountSettingItem = CountSettingItem + 1
 					return ToggleFunc
 				end
-				function SettingItem:Slider(SliderConfig)
+				function SettingItem:Slider(SliderName, SliderConfig)
 					local SliderConfig = SliderConfig or {}
 					SliderConfig.Name = SliderConfig.Name or "Slider"
 					SliderConfig.Increment = SliderConfig.Increment or 1
@@ -1160,7 +1175,8 @@ function WazureV1:Start(GuiConfig)
 					SliderConfig.Max = SliderConfig.Max or 100
 					SliderConfig.Default = SliderConfig.Default or 0
 					SliderConfig.Callback = SliderConfig.Callback or function() end
-					local SliderFunc = {Value = SliderConfig.Default}
+					local SliderFunc = {Type = "Slider", Value = SliderConfig.Default}
+					local SliderName = SliderName or SliderConfig.Title
 
 					local AnotherSlider = Instance.new("Frame");
 					local AnotherSliderName = Instance.new("TextLabel");
@@ -1239,6 +1255,9 @@ function WazureV1:Start(GuiConfig)
 					end
 					function SliderFunc:Set(Value)
 						Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
+						if GuiConfig["Save Config"].Enabled then
+							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+						end
 						SliderFunc.Value = Value
 						AnotherSliderName.Text = SliderConfig.Name.." / "..tostring(Value)
 						TweenService:Create(
@@ -1266,16 +1285,18 @@ function WazureV1:Start(GuiConfig)
 					end)
 					EnterMouseGUI(AnotherSlider)
 					SliderFunc:Set(tonumber(SliderConfig.Default))
+
+					ItemFunc["Setting Item"][SliderName] = SliderFunc
 					CountSettingItem = CountSettingItem + 1
 					return SliderFunc
 				end
 				CountSetting = CountSetting + 1
-				return SettingItem
+				return ItemFunc["Setting Item"]
 			end
 		end
 		function Items:Seperator(SeperatorName)
 			local SeperatorName = SeperatorName or "Seperator"
-			local SeperatorFunc = {Value = SeperatorName}
+			local SeperatorFunc = {Type = "Seperator", Value = SeperatorName}
 			
 			local Seperator = Instance.new("TextLabel");
 			Seperator.Font = Enum.Font.GothamBold
@@ -1294,17 +1315,22 @@ function WazureV1:Start(GuiConfig)
 			Seperator.Parent = ScrollLayers
 
 			function SeperatorFunc:Set(Value)
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+				end
 				Value = Value or Seperator.Text
 				SeperatorFunc.Value = Value
 				Seperator.Text = tostring(Value)
 			end
 			SeperatorFunc:Set(SeperatorName)
+
+			Items[SeperatorName] = SeperatorFunc
 			CountItem = CountItem + 1
 			return SeperatorFunc
 		end
 		function Items:Label(LabelName)
 			local LabelName = LabelName or "Label"
-			local LabelFunc = {Value = LabelName}
+			local LabelFunc = {Type = "Label", Value = LabelName}
 
 			local Label = Instance.new("Frame");
 			local LabelFrame = Instance.new("Frame");
@@ -1366,6 +1392,9 @@ function WazureV1:Start(GuiConfig)
 				UpSize2()
 			end
 			function LabelFunc:Set(Value)
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+				end
 				Value = Value or LabelText.Text
 				LabelFunc.Value = Value
 				LabelText.Text = tostring(Value)
@@ -1377,16 +1406,19 @@ function WazureV1:Start(GuiConfig)
 				LabelFunc:AutoSize()
 			end)
 			LabelFunc:Set(tostring(LabelName))
+
+			Items[LabelName] = LabelFunc
 			CountItem = CountItem + 1
 			return LabelFunc
 		end
-		function Items:Button(ButtonConfig)
+		function Items:Button(ButtonName, ButtonConfig)
 			local ButtonConfig = ButtonConfig or {}
 			ButtonConfig.Title = ButtonConfig.Title or "Button"
 			ButtonConfig.Content = ButtonConfig.Content or ""
 			ButtonConfig.Icon = ButtonConfig.Icon or "rbxassetid://18271082015"
 			ButtonConfig.Callback = ButtonConfig.Callback or function() end
-			local ButtonFunc = {}
+			local ButtonFunc = {Type = "Button"}
+			local ButtonName = ButtonName or ButtonConfig.Title
 			
 			local Button = Instance.new("Frame");
 			local UICorner26 = Instance.new("UICorner");
@@ -1473,15 +1505,17 @@ function WazureV1:Start(GuiConfig)
 			end)
 
 			AddSetting(ButtonFunc, Button)
+			Items[ButtonName] = ButtonFunc
 			CountItem = CountItem + 1
 			return ButtonFunc
 		end
-		function Items:TextInput(TextInputConfig)
+		function Items:TextInput(TextInputName, TextInputConfig)
 			local TextInputConfig = TextInputConfig or {}
 			TextInputConfig.Title = TextInputConfig.Title or "Title"
 			TextInputConfig.Content = TextInputConfig.Content or ""
 			TextInputConfig.Callback = TextInputConfig.Callback or function() end
-			local TextInputFunc = {Value = ""}
+			local TextInputFunc = {Type = "TextInput", Value = ""}
+			local TextInputName = TextInputName or TextInputConfig.Title
 
 			local Input = Instance.new("Frame");
 			local UICorner28 = Instance.new("UICorner");
@@ -1568,6 +1602,9 @@ function WazureV1:Start(GuiConfig)
 			InputBox.Name = "InputBox"
 			InputBox.Parent = InputInput
 			function TextInputFunc:Set(Value)
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+				end
 				Value = Value or InputBox.Text
 				InputBox.Text = Value
 				TextInputFunc.Value = Value
@@ -1578,16 +1615,19 @@ function WazureV1:Start(GuiConfig)
 				TextInputFunc:Set(InputBox.Text)
 			end)
 			AddSetting(TextInputFunc, Input)
+			
+			Items[TextInputName] = TextInputFunc
 			CountItem = CountItem + 1
 			return TextInputFunc
 		end
-		function Items:Toggle(ToggleConfig)
+		function Items:Toggle(ToggleName, ToggleConfig)
 			local ToggleConfig = ToggleConfig or {}
 			ToggleConfig.Title = ToggleConfig.Title or "Title"
 			ToggleConfig.Content = ToggleConfig.Content or ""
 			ToggleConfig.Default = ToggleConfig.Default or false
 			ToggleConfig.Callback = ToggleConfig.Callback or function() end
-			local ToggleFunc = {Value = ToggleConfig.Default}
+			local ToggleFunc = {Type = "Toggle", Value = ToggleConfig.Default}
+			local ToggleName = ToggleName or ToggleConfig.Title
 
 			local Toggle = Instance.new("Frame");
 			local UICorner7 = Instance.new("UICorner");
@@ -1696,6 +1736,10 @@ function WazureV1:Start(GuiConfig)
 			ToggleButton.Parent = Toggle
 
 			function ToggleFunc:Set(Value)
+				Value = Value or ToggleFunc.Value
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+				end
 				if Value then
 					TweenService:Create(
 						ToggleTitle,
@@ -1750,10 +1794,12 @@ function WazureV1:Start(GuiConfig)
 			ToggleFunc:Set(ToggleFunc.Value)
 
 			AddSetting(ToggleFunc, Toggle)
+
+			Items[ToggleName] = ToggleFunc
 			CountItem = CountItem + 1
 			return ToggleFunc
 		end 
-		function Items:Slider(SliderConfig)
+		function Items:Slider(SliderName, SliderConfig)
 			local SliderConfig = SliderConfig or {}
 			SliderConfig.Title = SliderConfig.Title or "Title"
 			SliderConfig.Content = SliderConfig.Content or ""
@@ -1762,7 +1808,8 @@ function WazureV1:Start(GuiConfig)
 			SliderConfig.Max = SliderConfig.Max or 100
 			SliderConfig.Default = SliderConfig.Default or 0
 			SliderConfig.Callback = SliderConfig.Callback or function() end
-			local SliderFunc = {Value = SliderConfig.Default}
+			local SliderFunc = {Type = "Slider", Value = SliderConfig.Default}
+			local SliderName = SliderName or SliderConfig.Title
 
 			local Slider = Instance.new("Frame");
 			local UICorner20 = Instance.new("UICorner");
@@ -2002,6 +2049,9 @@ function WazureV1:Start(GuiConfig)
 			end
 			function SliderFunc:Set(Value)
 				Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+				end
 				SliderFunc.Value = Value
 				SliderNumber.Text = tostring(Value)
 				TweenService:Create(
@@ -2061,10 +2111,12 @@ function WazureV1:Start(GuiConfig)
 			EnterMouseGUI(Slider)
 			SliderFunc:Set(tonumber(SliderConfig.Default))
 			AddSetting(SliderFunc, Slider)
+
+			Items[SliderName] = SliderFunc
 			CountItem = CountItem + 1
 			return SliderFunc
 		end
-		function Items:Dropdown(DropdownConfig)
+		function Items:Dropdown(DropdownName, DropdownConfig)
 			local DropdownConfig = DropdownConfig or {}
 			DropdownConfig.Title = DropdownConfig.Title or "Title"
 			DropdownConfig.Content = DropdownConfig.Content or ""
@@ -2073,6 +2125,7 @@ function WazureV1:Start(GuiConfig)
 			DropdownConfig.Default = DropdownConfig.Default or {}
 			DropdownConfig.Callback = DropdownConfig.Callback or function() end
 			local DropdownFunc = {Value = DropdownConfig.Default, Options = DropdownConfig.Options}
+			local DropdownName = DropdownName or DropdownConfig.Title
 
 			local Dropdown = Instance.new("Frame");
 			local UICorner15 = Instance.new("UICorner");
@@ -2262,6 +2315,9 @@ function WazureV1:Start(GuiConfig)
 			end
 			function DropdownFunc:Set(Value)
 				DropdownFunc.Value = Value or DropdownFunc.Value
+				if GuiConfig["Save Config"].Enabled then
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+				end
 				for _, Drop in ScrollDrop:GetChildren() do
 					if Drop.Name ~= "UIListLayout" and not table.find(DropdownFunc.Value, Drop.DropChooseFrame.ChooseButton.Text) then
 						TweenService:Create(
@@ -2432,6 +2488,8 @@ function WazureV1:Start(GuiConfig)
 			DropdownFunc:Refresh(DropdownFunc.Options, DropdownFunc.Value)
 			EnterMouseGUI(DropTop)
 			AddSetting(DropdownFunc, DropTop)
+
+			Items[DropdownName] = DropdownFunc
 			CountItem = CountItem + 1
 			return DropdownFunc
 		end
