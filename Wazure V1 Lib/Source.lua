@@ -1288,13 +1288,13 @@ function WazureV1:Start(GuiConfig)
 					EnterMouseGUI(AnotherSlider)
 					SliderFunc:Set(tonumber(SliderConfig.Default))
 
-					Setting[SliderName] = SliderFunc
+					SettingItem[SliderName] = SliderFunc
 					ItemFunc["Setting Item"][SliderName] = SliderFunc
 					CountSettingItem = CountSettingItem + 1
 					return SliderFunc
 				end
 				CountSetting = CountSetting + 1
-				return ItemFunc["Setting Item"]
+				return SettingItem
 			end
 		end
 		function Items:Seperator(SeperatorName)
