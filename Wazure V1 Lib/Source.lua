@@ -1297,7 +1297,7 @@ function WazureV1:Start(GuiConfig)
 				return SettingItem
 			end
 		end
-		function Items:Seperator(SeperatorName)
+		function Items:MakeSeperator(SeperatorName)
 			local SeperatorName = SeperatorName or "Seperator"
 			local SeperatorFunc = {Type = "Seperator", Value = SeperatorName}
 			
@@ -1331,7 +1331,7 @@ function WazureV1:Start(GuiConfig)
 			CountItem = CountItem + 1
 			return SeperatorFunc
 		end
-		function Items:Label(LabelName)
+		function Items:MakeLabel(LabelName)
 			local LabelName = LabelName or "Label"
 			local LabelFunc = {Type = "Label", Value = LabelName}
 
@@ -1414,7 +1414,7 @@ function WazureV1:Start(GuiConfig)
 			CountItem = CountItem + 1
 			return LabelFunc
 		end
-		function Items:Button(ButtonName, ButtonConfig)
+		function Items:MakeButton(ButtonName, ButtonConfig)
 			local ButtonConfig = ButtonConfig or {}
 			ButtonConfig.Title = ButtonConfig.Title or "Button"
 			ButtonConfig.Content = ButtonConfig.Content or ""
@@ -1512,7 +1512,7 @@ function WazureV1:Start(GuiConfig)
 			CountItem = CountItem + 1
 			return ButtonFunc
 		end
-		function Items:TextInput(TextInputName, TextInputConfig)
+		function Items:MakeTextInput(TextInputName, TextInputConfig)
 			local TextInputConfig = TextInputConfig or {}
 			TextInputConfig.Title = TextInputConfig.Title or "Title"
 			TextInputConfig.Content = TextInputConfig.Content or ""
@@ -1623,7 +1623,7 @@ function WazureV1:Start(GuiConfig)
 			CountItem = CountItem + 1
 			return TextInputFunc
 		end
-		function Items:Toggle(ToggleName, ToggleConfig)
+		function Items:MakeToggle(ToggleName, ToggleConfig)
 			local ToggleConfig = ToggleConfig or {}
 			ToggleConfig.Title = ToggleConfig.Title or "Title"
 			ToggleConfig.Content = ToggleConfig.Content or ""
@@ -1801,7 +1801,7 @@ function WazureV1:Start(GuiConfig)
 			CountItem = CountItem + 1
 			return ToggleFunc
 		end 
-		function Items:Slider(SliderName, SliderConfig)
+		function Items:MakeSlider(SliderName, SliderConfig)
 			local SliderConfig = SliderConfig or {}
 			SliderConfig.Title = SliderConfig.Title or "Title"
 			SliderConfig.Content = SliderConfig.Content or ""
@@ -2118,7 +2118,7 @@ function WazureV1:Start(GuiConfig)
 			CountItem = CountItem + 1
 			return SliderFunc
 		end
-		function Items:Dropdown(DropdownName, DropdownConfig)
+		function Items:MakeDropdown(DropdownName, DropdownConfig)
 			local DropdownConfig = DropdownConfig or {}
 			DropdownConfig.Title = DropdownConfig.Title or "Title"
 			DropdownConfig.Content = DropdownConfig.Content or ""
@@ -2126,7 +2126,7 @@ function WazureV1:Start(GuiConfig)
 			DropdownConfig.Options = DropdownConfig.Options or {}
 			DropdownConfig.Default = DropdownConfig.Default or {}
 			DropdownConfig.Callback = DropdownConfig.Callback or function() end
-			local DropdownFunc = {Value = DropdownConfig.Default, Options = DropdownConfig.Options}
+			local DropdownFunc = {Type = "Dropdown", Value = DropdownConfig.Default, Options = DropdownConfig.Options}
 			local DropdownName = DropdownName or DropdownConfig.Title
 
 			local Dropdown = Instance.new("Frame");
