@@ -105,3 +105,5 @@ local MultiDropdown = Tabs.MainTab:MakeDropdown("Multi Dropdown", {
 		print(Value)
 	end
 })
+loadstring(game:HttpGet("https://github.com/ErutTheTeru/uilibrary/blob/main/Setting%20Func/Source.lua?raw=true"))()
+loadsetting("W-azure", "Config", Tabs)
