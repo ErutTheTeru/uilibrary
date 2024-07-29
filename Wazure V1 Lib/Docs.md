@@ -16,9 +16,8 @@ local WazureGui = WazureV1:Start({
 	["Color"] = Color3.fromRGB(6.000000117346644, 141.0000067949295, 234.00000125169754),
 	["Custom Toggle"] = false,
 	["Save Config"] = {
-		["Enabled"] = true,
-		["Name Folder"] = "W-azure",
-		["Name Config"] = "Config",
+		["Folder"] = "W-azure",
+		["Name Config"] = "Config"
 	},
 	["CloseCallBack"] = function()
 		WazureV1:Notify({
@@ -44,8 +43,7 @@ local WazureGui = WazureV1:Start({
 	["Color"] = <userdata>,
 	["Custom Toggle"] = <boolean>,
 	["Save Config"] = {
-		["Enabled"] = <boolean>,
-		["Name Folder"] = <string>,
+		["Folder"] = <string>,
 		["Name Config"] = <string>,
 	},
 	["CloseCallBack"] = <function>
