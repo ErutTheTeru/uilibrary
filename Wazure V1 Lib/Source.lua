@@ -1108,7 +1108,7 @@ function WazureV1:Start(GuiConfig)
 					function ToggleFunc:Set(Value)
 						Value = Value or ToggleFunc.Value
 						if GuiConfig["Save Config"].Enabled then
-							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 						end
 						if Value then
 							TweenService:Create(
@@ -1256,7 +1256,7 @@ function WazureV1:Start(GuiConfig)
 					function SliderFunc:Set(Value)
 						Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
 						if GuiConfig["Save Config"].Enabled then
-							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+							save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 						end
 						SliderFunc.Value = Value
 						AnotherSliderName.Text = SliderConfig.Name.." / "..tostring(Value)
@@ -1316,7 +1316,7 @@ function WazureV1:Start(GuiConfig)
 
 			function SeperatorFunc:Set(Value)
 				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				Value = Value or Seperator.Text
 				SeperatorFunc.Value = Value
@@ -1393,7 +1393,7 @@ function WazureV1:Start(GuiConfig)
 			end
 			function LabelFunc:Set(Value)
 				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				Value = Value or LabelText.Text
 				LabelFunc.Value = Value
@@ -1603,7 +1603,7 @@ function WazureV1:Start(GuiConfig)
 			InputBox.Parent = InputInput
 			function TextInputFunc:Set(Value)
 				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				Value = Value or InputBox.Text
 				InputBox.Text = Value
@@ -1738,7 +1738,7 @@ function WazureV1:Start(GuiConfig)
 			function ToggleFunc:Set(Value)
 				Value = Value or ToggleFunc.Value
 				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				if Value then
 					TweenService:Create(
@@ -2050,7 +2050,7 @@ function WazureV1:Start(GuiConfig)
 			function SliderFunc:Set(Value)
 				Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
 				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				SliderFunc.Value = Value
 				SliderNumber.Text = tostring(Value)
@@ -2316,7 +2316,7 @@ function WazureV1:Start(GuiConfig)
 			function DropdownFunc:Set(Value)
 				DropdownFunc.Value = Value or DropdownFunc.Value
 				if GuiConfig["Save Config"].Enabled then
-					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], WazureV1)
+					save(GuiConfig["Save Config"]["Name Folder"], GuiConfig["Save Config"]["Name Config"], Tabs)
 				end
 				for _, Drop in ScrollDrop:GetChildren() do
 					if Drop.Name ~= "UIListLayout" and not table.find(DropdownFunc.Value, Drop.DropChooseFrame.ChooseButton.Text) then
