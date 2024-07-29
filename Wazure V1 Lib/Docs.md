@@ -1,6 +1,6 @@
 # W-azure V1 Library (remake)
-- made by Teru, discord: ruteteru
 - any bug & error, report in https://discord.gg/3Aatp4Nhjp 
+- made by Teru, discord: ruteteru
 ## How to use?
 - Import the library
 ```lua
@@ -38,6 +38,11 @@ local WazureGui = WazureV1:Start({
 	["Tab Width"] = <number>,
 	["Color"] = <userdata>,
 	["Custom Toggle"] = <boolean>,
+	["Save Config"] = {
+		["Enabled"] = <boolean>,
+		["Name Folder"] = <string>,
+		["Name Config"] = <string>,
+	},
 	["CloseCallBack"] = <function>
 })
 ```
@@ -80,7 +85,7 @@ print(Label.Value)
 ```
 ## Button
 ```lua
-local Button = MainTab:Button({
+local Button = MainTab:Button(<string>, {
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Logo"] = <string>,
@@ -89,7 +94,7 @@ local Button = MainTab:Button({
 ```
 ## Text Input
 ```lua
-local TextInput = MainTab:TextInput({
+local TextInput = MainTab:TextInput(<string>,{
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Callback"] = <function>
@@ -102,7 +107,7 @@ print(TextInput.Value)
 ```
 ## Toggle
 ```lua
-local Toggle = MainTab:Toggle({
+local Toggle = MainTab:Toggle(<string>, {
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Default"] = <boolean>,
@@ -120,7 +125,7 @@ local ToggleSetting = Toggle:AddSetting()
 ```
 ### Toggle of Setting
 ```lua
-local SettingToggle = ToggleSetting:Toggle({
+local SettingToggle = ToggleSetting:Toggle(<string>, {
 	["Name"]= <string>,
 	["Default"] = <boolean>,
 	["Callback"] = <function>
@@ -133,7 +138,7 @@ print(SettingToggle.Value)
 ```
 ### Slider of Setting
 ```lua
-local SliderSetting = ToggleSetting:Slider({
+local SliderSetting = ToggleSetting:Slider(<string>, {
 	["Name"]= <string>,
 	["Min"] = <number>,
 	["Max"] = <number>,
@@ -149,7 +154,7 @@ print(SliderSetting.Value)
 ```
 ## Slider
 ```lua
-local Slider = MainTab:Slider({
+local Slider = MainTab:Slider(<string>, {
 	["Title"]= <string>,
 	["Content"] = <string>,
 	["Min"] = <number>,
@@ -166,7 +171,7 @@ print(Slider.Value)
 ```
 ## Dropdown
 ```lua
-local Dropdown = MainTab:Dropdown({
+local Dropdown = MainTab:Dropdown(<string>, {
     ["Title"]= <string>,
 	["Content"] = <string>,
 	["Multi"] = <boolean>,
