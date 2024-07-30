@@ -34,7 +34,7 @@ getgenv().loadsetting = function(foldername, filename, tabs)
                         if Item["Setting Item"] then
                             for i, v in Item["Setting Item"] do
                                 if UIConfig[Tab][NameItem]["Setting Item"][i] and UIConfig[Tab][NameItem]["Setting Item"][i] ~= v.Value then
-                                    v:Set(UIConfig[Tab][NameItem]["Setting Item"].Value)
+                                    v:Set(UIConfig[Tab][NameItem]["Setting Item"][i].Value)
                                 end
                             end
                         end
