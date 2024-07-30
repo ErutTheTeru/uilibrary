@@ -27,13 +27,12 @@ local WazureGui = WazureV1:Start({
 		})
 	end
 })
-local Tabs = {
-	MainTab = WazureGui:MakeTab("Main"),
-	SubFarmTab = WazureGui:MakeTab("Sub Farming")
-}
-local Seperator = Tabs.MainTab:MakeSeperator("Main")
-local Label = Tabs.MainTab:MakeLabel("This is a label")
-local Button = Tabs.MainTab:MakeButton("Button", {
+local MainTab = WazureGui:MakeTab("Main"),
+local SubFarmTab = WazureGui:MakeTab("Sub Farming")
+
+local Seperator = MainTab:MakeSeperator("Main")
+local Label = MainTab:MakeLabel("This is a label")
+local Button = MainTab:MakeButton("Button", {
 	["Title"] = "Button",
 	["Content"] = "This is a button",
 	["Logo"] = "rbxassetid://18271082015",
@@ -41,14 +40,14 @@ local Button = Tabs.MainTab:MakeButton("Button", {
 		print("Button Clicked!")
 	end
 })
-local TextInput = Tabs.MainTab:MakeTextInput("Text Input", {
+local TextInput = MainTab:MakeTextInput("Text Input", {
 	["Title"] = "Webhook",
 	["Content"] = "Enter your webhook here",
 	["Callback"] = function(Value)
 		print(Value)
 	end
 })
-local Toggle = Tabs.MainTab:MakeToggle("Toggle", {
+local Toggle = MainTab:MakeToggle("Toggle", {
 	["Title"]= "Toggle",
 	["Content"] = "This is a Toggle",
 	["Default"] = false,
@@ -74,7 +73,7 @@ local SliderSetting = ToggleSetting:Slider("Setting Slider", {
 		print(Value)
 	end
 })
-local Slider = Tabs.MainTab:MakeSlider("Slider", {
+local Slider = MainTab:MakeSlider("Slider", {
 	["Title"] = "Slider",
 	["Content"] = "This is a Slider",
 	["Min"] = 0,
@@ -85,7 +84,7 @@ local Slider = Tabs.MainTab:MakeSlider("Slider", {
 		print(Value)
 	end
 })
-local Dropdown = Tabs.MainTab:MakeDropdown("Dropdown", {
+local Dropdown = MainTab:MakeDropdown("Dropdown", {
 	["Title"] = "Dropdown",
 	["Content"] = "This is a dropdown",
 	["Multi"] = false,
@@ -95,7 +94,7 @@ local Dropdown = Tabs.MainTab:MakeDropdown("Dropdown", {
 		print(Value)
 	end
 })
-local MultiDropdown = Tabs.MainTab:MakeDropdown("Multi Dropdown", {
+local MultiDropdown = MainTab:MakeDropdown("Multi Dropdown", {
 	["Title"] = "Multi Dropdown",
 	["Content"] = "This is a multi dropdown",
 	["Multi"] = true,
@@ -107,4 +106,4 @@ local MultiDropdown = Tabs.MainTab:MakeDropdown("Multi Dropdown", {
 })
 task.wait(3)
 loadstring(game:HttpGet("https://github.com/ErutTheTeru/uilibrary/blob/main/Setting%20Func/Source.lua?raw=true"))()
-loadsetting("W-azure", "Config", Tabs)
+loadsetting("W-azure", "Config", WazureGui)
