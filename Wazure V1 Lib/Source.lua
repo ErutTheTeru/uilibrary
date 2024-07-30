@@ -2057,12 +2057,20 @@ function WazureV1:Start(GuiConfig)
 			Slider.InputEnded:Connect(function(Input) 
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 then 
 					Dragging = false 
+					local SizeScale = math.clamp((Input.Position.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1)
+					SliderFunc:Set(SliderConfig.Min + ((SliderConfig.Max - SliderConfig.Min) * SizeScale)) 
 				end 
 			end)
 			UserInputService.InputChanged:Connect(function(Input)
 				if Dragging and Input.UserInputType == Enum.UserInputType.MouseMovement then 
+					Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
 					local SizeScale = math.clamp((Input.Position.X - SliderFrame.AbsolutePosition.X) / SliderFrame.AbsoluteSize.X, 0, 1)
-					SliderFunc:Set(SliderConfig.Min + ((SliderConfig.Max - SliderConfig.Min) * SizeScale)) 
+					SliderNumber.Text = tostring(Value)
+					TweenService:Create(
+						SliderDrag,
+						TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+						{Size = UDim2.fromScale((Value - SliderConfig.Min) / (SliderConfig.Max - SliderConfig.Min), 1)}
+					):Play()
 				end
 			end)
 			SliderBox:GetPropertyChangedSignal("Text"):Connect(function()
