@@ -2497,7 +2497,7 @@ function WazureV1:Start(GuiConfig)
 			return DropdownFunc
 		end
 		CountTab = CountTab + 1
-		Tabs[TabName] = Items
+		Tabs[TabButton.Text] = Items
 		return Items
 	end
 	return Tabs
