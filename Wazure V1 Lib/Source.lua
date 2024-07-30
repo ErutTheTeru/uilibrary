@@ -2293,7 +2293,7 @@ function WazureV1:Start(GuiConfig)
 			local DropCount = 0
 			function DropdownFunc:Clear()
 				for _, DropFrame in ScrollDrop:GetChildren() do
-					if DropFrame.Name == "Option" then
+					if DropFrame.Name ~= "UIListLayout" then
 						DropdownFunc.Value = {}
 						DropdownFunc.Options = {}
 						DropFrameText.Text = ". . ."
