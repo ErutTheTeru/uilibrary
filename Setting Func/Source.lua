@@ -24,13 +24,11 @@ getgenv().loadsetting = function(foldername, filename, tabs)
     for Tab, TabFunc in tabs do
         if UIConfig[Tab] then
             for NameItem, Item in TabFunc do
-                print(NameItem, type(Item), Item)
                 if type(Item) == "table" and UIConfig[Tab][NameItem] and Item.Type and UIConfig[Tab][NameItem].Type then
                     if Item.Type == "Dropdown" then
                         Item:Refresh(UIConfig[Tab][NameItem].Options, UIConfig[Tab][NameItem].Value)
                     else
                         if Item.Type ~= "Button" and UIConfig[Tab][NameItem] and UIConfig[Tab][NameItem].Value ~= Item.Value then
-                            print(UIConfig[Tab][NameItem].Value)
                             Item:Set(UIConfig[Tab][NameItem].Value)
                         end
                         if Item["Setting Item"] then
