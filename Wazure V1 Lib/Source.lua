@@ -803,7 +803,7 @@ function WazureV1:Start(GuiConfig)
 	local CountTab = 0
 	local CountSetting = 0
 	function Tabs:MakeTab(TabName)
-		TabName = TabName or "Tab"
+		local TabName = TabName or ""
 		local ScrollLayers = Instance.new("ScrollingFrame");
 		local UIListLayout1 = Instance.new("UIListLayout");
 
