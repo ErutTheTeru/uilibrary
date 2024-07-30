@@ -1282,7 +1282,7 @@ function WazureV1:Start(GuiConfig)
 					UserInputService.InputChanged:Connect(function(Input)
 						if Dragging and Input.UserInputType == Enum.UserInputType.MouseMovement then 
 							local SizeScale = math.clamp((Input.Position.X - AnotherSliderFrame.AbsolutePosition.X) / AnotherSliderFrame.AbsoluteSize.X, 0, 1)
-							Value = math.clamp(Round(Value, SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
+							Value = math.clamp(Round(SliderConfig.Min + ((SliderConfig.Max - SliderConfig.Min) * SizeScale), SliderConfig.Increment), SliderConfig.Min, SliderConfig.Max)
 							SliderFunc.Value = Value
 							AnotherSliderName.Text = SliderConfig.Name.." / "..tostring(Value)
 							TweenService:Create(
