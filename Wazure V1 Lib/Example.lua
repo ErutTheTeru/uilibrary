@@ -27,7 +27,7 @@ local WazureGui = WazureV1:Start({
 		})
 	end
 })
-local MainTab = WazureGui:MakeTab("Main"),
+local MainTab = WazureGui:MakeTab("Main")
 local SubFarmTab = WazureGui:MakeTab("Sub Farming")
 
 local Seperator = MainTab:MakeSeperator("Main")
