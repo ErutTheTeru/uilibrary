@@ -804,6 +804,7 @@ function WazureV1:Start(GuiConfig)
 	local CountSetting = 0
 	function Tabs:MakeTab(TabName)
 		local TabName = TabName or ""
+		
 		local ScrollLayers = Instance.new("ScrollingFrame");
 		local UIListLayout1 = Instance.new("UIListLayout");
 
@@ -2497,7 +2498,7 @@ function WazureV1:Start(GuiConfig)
 			return DropdownFunc
 		end
 		CountTab = CountTab + 1
-		Tabs[TabButton.Text] = Items
+		Tabs[TabName] = Items
 		return Items
 	end
 	return Tabs
