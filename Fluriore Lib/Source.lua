@@ -347,7 +347,7 @@ function FlurioreLib:MakeNotify(NotifyConfig)
 			task.wait(tonumber(NotifyConfig.Time) / 1.2)
 			NotifyFrame:Destroy()
 		end
-		Close.MouseButton1Down:Connect(function()
+		Close.Activated:Connect(function()
 			NotifyFunction:Close()
 		end)
 		TweenService:Create(
@@ -404,12 +404,12 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 	DropShadowHolder.BackgroundTransparency = 1
 	DropShadowHolder.BorderSizePixel = 0
-	DropShadowHolder.Position = UDim2.new(0, 100, 0, 100)
 	DropShadowHolder.Size = UDim2.new(0, 455, 0, 350)
 	DropShadowHolder.ZIndex = 0
 	DropShadowHolder.Name = "DropShadowHolder"
 	DropShadowHolder.Parent = HirimiGui
-
+	
+  DropShadowHolder.Position = UDim2.new(0, (HirimiGui.AbsoluteSize.X // 2 - DropShadowHolder.Size.X.Offset // 2), 0, (HirimiGui.AbsoluteSize.Y // 2 - DropShadowHolder.Size.Y.Offset // 2))
 	DropShadow.Image = "rbxassetid://6015897843"
 	DropShadow.ImageColor3 = Color3.fromRGB(15, 15, 15)
 	DropShadow.ImageTransparency = 0.5
@@ -723,7 +723,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 	end
 	local OldPos = DropShadowHolder.Position
 	local OldSize = DropShadowHolder.Size
-	MaxRestore.MouseButton1Down:Connect(function()
+	MaxRestore.Activated:Connect(function()
 		CircleClick(MaxRestore, Mouse.X, Mouse.Y)
 		if ImageLabel.Image == "rbxassetid://9886659406" then
 			ImageLabel.Image = "rbxassetid://9886659001"
@@ -737,11 +737,11 @@ function FlurioreLib:MakeGui(GuiConfig)
 			TweenService:Create(DropShadowHolder, TweenInfo.new(0.3), {Size = OldSize}):Play()
 		end
 	end)
-	Min.MouseButton1Down:Connect(function()
+	Min.Activated:Connect(function()
 		CircleClick(Min, Mouse.X, Mouse.Y)
 		DropShadowHolder.Visible = false
 	end)
-	Close.MouseButton1Down:Connect(function()
+	Close.Activated:Connect(function()
 		CircleClick(Close, Mouse.X, Mouse.Y)
 		DropShadowHolder.Visible = false
 	end)
@@ -832,7 +832,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 	DropdownSelect.ClipsDescendants = true
 	DropdownSelect.Parent = MoreBlur
 
-	ConnectButton.MouseButton1Down:Connect(function()
+	ConnectButton.Activated:Connect(function()
 		if MoreBlur.Visible then
 			TweenService:Create(MoreBlur, TweenInfo.new(0.3), {BackgroundTransparency = 0.999}):Play()
 			TweenService:Create(DropdownSelect, TweenInfo.new(0.3), {Position = UDim2.new(1, 172, 0.5, 0)}):Play()
@@ -975,7 +975,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 
 			UICorner4.Parent = ChooseFrame
 		end
-		TabButton.MouseButton1Down:Connect(function()
+		TabButton.Activated:Connect(function()
 			CircleClick(TabButton, Mouse.X, Mouse.Y)
 			local FrameChoose
 			for a, s in ScrollTab:GetChildren() do
@@ -1181,7 +1181,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 					UpdateSizeScroll()
 				end
 			end
-			SectionButton.MouseButton1Down:Connect(function()
+			SectionButton.Activated:Connect(function()
 				CircleClick(SectionButton, Mouse.X, Mouse.Y)
 				if OpenSection then
 					TweenService:Create(FeatureFrame, TweenInfo.new(0.5), {Rotation = 0}):Play()
@@ -1385,7 +1385,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				FeatureImg3.Name = "FeatureImg"
 				FeatureImg3.Parent = FeatureFrame1
 
-				ButtonButton.MouseButton1Click:Connect(function()
+				ButtonButton.Activated:Connect(function()
 					CircleClick(ButtonButton, Mouse.X, Mouse.Y)
 					ButtonConfig.Callback()
 				end)
@@ -1510,7 +1510,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				UICorner23.CornerRadius = UDim.new(0, 15)
 				UICorner23.Parent = ToggleCircle
 				
-				ToggleButton.MouseButton1Click:Connect(function()
+				ToggleButton.Activated:Connect(function()
 					CircleClick(ToggleButton, Mouse.X, Mouse.Y) 
 					ToggleFunc.Value = not ToggleFunc.Value
 					ToggleFunc:Set(ToggleFunc.Value)
@@ -1981,7 +1981,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				UICorner11.CornerRadius = UDim.new(0, 4)
 				UICorner11.Parent = SelectOptionsFrame
 
-				DropdownButton.MouseButton1Click:Connect(function()
+				DropdownButton.Activated:Connect(function()
 					if not MoreBlur.Visible then
 						MoreBlur.Visible = true 
 						DropPageLayout:JumpToIndex(SelectOptionsFrame.LayoutOrder)
@@ -2161,7 +2161,7 @@ function FlurioreLib:MakeGui(GuiConfig)
 				
 					UICorner38.Parent = ChooseFrame
 					
-					OptionButton.MouseButton1Click:Connect(function()
+					OptionButton.Activated:Connect(function()
 						CircleClick(OptionButton, Mouse.X, Mouse.Y) 
 						if DropdownConfig.Multi then
 							if Option.BackgroundTransparency > 0.95 then
