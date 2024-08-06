@@ -1,5 +1,5 @@
 # Rimus Library
-- any bug & error, report in https://discord.gg/3Aatp4Nhjp 
+- any bug & error, report in https://discord.gg/CejANXn8sa
 - made by Teru, discord: ruteteru
 ## How to use?
 - Import the library
